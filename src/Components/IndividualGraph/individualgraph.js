@@ -16,7 +16,7 @@ const IndividualGraph = () => {
 
 	return (
 		<div>
-			<Doughnut data={data} />
+			<Doughnut data={data} options={{ maintainAspectRatio: false }} />
 		</div>
 	);
 };

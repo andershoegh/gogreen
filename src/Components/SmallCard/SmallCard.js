@@ -6,7 +6,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import IndividualGraph from './../IndividualGraph/individualgraph';
 import Typography from '@material-ui/core/Typography';
-import './SmallCard.scss';
 
 const styles = {
 	card: {

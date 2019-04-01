@@ -3,6 +3,9 @@ import { Doughnut } from 'react-chartjs-2';
 
 const IndividualGraph = () => {
 	// This comp contains dummy data - should be replaced by connection with DB
+	const legendOptions = {
+		visibility: false
+	};
 	const data = {
 		labels: [ 'Red', 'Green', 'Yellow' ],
 		datasets: [
@@ -16,7 +19,7 @@ const IndividualGraph = () => {
 
 	return (
 		<div>
-			<Doughnut data={data} options={{ maintainAspectRatio: false }} />
+			<Doughnut data={data} legend={legendOptions} />
 		</div>
 	);
 };

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
+import { defaults } from 'react-chartjs-2';
+defaults.global.legend.display = false;
 
 const IndividualGraph = () => {
 	// This comp contains dummy data - should be replaced by connection with DB
@@ -15,8 +17,8 @@ const IndividualGraph = () => {
 	};
 
 	return (
-		<div>
-			<Doughnut data={data} />
+		<div className="graph">
+			<Doughnut data={data} width={89} height={89} options={{ maintainAspectRatio: false }} />
 		</div>
 	);
 };

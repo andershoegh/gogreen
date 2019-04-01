@@ -1,5 +1,6 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
+import P from './../P/P';
 
 const IndividualGraph = () => {
 	// This comp contains dummy data - should be replaced by connection with DB
@@ -19,6 +20,7 @@ const IndividualGraph = () => {
 
 	return (
 		<div>
+			<P>My usage data</P>
 			<Doughnut data={data} legend={legendOptions} />
 		</div>
 	);

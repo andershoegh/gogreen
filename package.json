@@ -5,10 +5,12 @@
   "dependencies": {
     "chart.js": "^2.8.0",
     "firebase": "^5.9.1",
+    "materialize-css": "^1.0.0",
     "node-sass": "^4.11.0",
     "react": "^16.8.5",
     "react-chartjs-2": "^2.7.6",
     "react-dom": "^16.8.5",
+    "react-materialize": "^3.0.3",
     "react-scripts": "2.1.8",
     "sass": "^1.17.3"
   },

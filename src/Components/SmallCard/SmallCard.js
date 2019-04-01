@@ -13,12 +13,10 @@ const styles = {
 		width: '154px',
 		height: '154px',
 		textAlign: 'center',
-		padding: '1px'
+		padding: '0px'
 	},
-	bullet: {
-		display: 'inline-block',
-		margin: '0 2px',
-		transform: 'scale(0.8)'
+	p: {
+		paddingBottom: '12px'
 	}
 };
 
@@ -28,7 +26,9 @@ function SmallCard(props) {
 	return (
 		<Card className={classes.card}>
 			<CardContent>
-				<Typography component="p">My usage data</Typography>
+				<Typography component="p" className={classes.p}>
+					My usage data
+				</Typography>
 				<IndividualGraph />
 			</CardContent>
 			<CardActions />

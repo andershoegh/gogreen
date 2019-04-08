@@ -1,8 +1,8 @@
 import React from "react";
-import img from "../../images/backgroundGreen.png";
+import img from "../../images/Baggrund.png";
 
 const Content = {
-  backgroundImage: { img }
+  backgroundImage: { image: img }
 };
 
 const Background = () => {

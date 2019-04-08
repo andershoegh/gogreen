@@ -5,7 +5,7 @@ import SmallCard from "../Components/SmallCard/SmallCard";
 import { Row, Col } from "react-grid-system";
 import H1 from "../Components/H1/H1";
 import H2 from "../Components/H2/H2";
-import Background from "../Components/Background/Background";
+import "./pages.scss";
 
 const columnStyle = {
   paddingLeft: "25px",
@@ -16,7 +16,6 @@ const Dashboard = () => {
   return (
     <div>
       <div>
-        <Link to="/">Dashboard</Link>
         <H1>GoForGreen</H1>
         <H2>Shift to green energy now</H2>
       </div>

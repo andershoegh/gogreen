@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { firebase } from "../src/Utils/Firebase";
+//import { firebase } from "../src/Utils/Firebase";
 import { Route, BrowserRouter } from 'react-router-dom'
 import Dashboard from './Pages/Dashboard';
 import Community from './Pages/Community';
@@ -11,7 +11,7 @@ import Navbar from './Components/NavBar/Navbar'
 
 class App extends Component {
   state = {
-   // dbCollection: []s
+   // dbCollection: []
   };
 
   /*componentDidMount() {
@@ -25,13 +25,14 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
-          <Route exact path='/' component={Dashboard}></Route>
-          <Route exact path='/community' component={Community}></Route>
-          <Route exact path='/myusage' component={MyUsage}></Route>
-          <Route exact path='/realtime' component={RealTime}></Route>
-          <Route exact path='/products' component={Products}></Route>
-        </div>
+          <div>
+            <Route path='/' component={Navbar}></Route>
+            <Route exact path='/' component={Dashboard}></Route>
+            <Route exact path='/community' component={Community}></Route>
+            <Route exact path='/myusage' component={MyUsage}></Route>
+            <Route exact path='/realtime' component={RealTime}></Route>
+            <Route exact path='/products' component={Products}></Route>
+          </div>
       </BrowserRouter>
     );
   }

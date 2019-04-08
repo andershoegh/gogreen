@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import IndividualGraph from "../Components/IndividualGraph/individualgraph";

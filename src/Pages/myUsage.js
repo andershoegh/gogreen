@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Icon from "../Components/Icon/Icon";
 import { Row, Container } from "react-grid-system";
 import H2 from "../Components/H2/H2";
@@ -11,22 +11,16 @@ import { Carousel } from "react-materialize";
 import "./pages.scss";
 
 const MyUsage = () => {
-  const dashStyle = {
-    position: "absolute",
-    width: "28px",
-    height: "28px",
-    left: "20px",
-    top: "20px"
-  };
-
   return (
     <div>
       <Container>
         <Row style={{ justifyContent: "space-evenly" }}>
           <Icon icon={userIcon} />
-          <Icon icon={communityIcon} />
+          <Link to="/community">
+            <Icon icon={communityIcon} />
+          </Link>
         </Row>
-        <Row />
+
         <Row>
           <WideCard
             header="Green Electricity consumption"

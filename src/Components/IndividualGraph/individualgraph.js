@@ -1,5 +1,4 @@
 import React from "react";
-import H1 from "./../H1/H1";
 import { Doughnut } from "react-chartjs-2";
 import { defaults } from "react-chartjs-2";
 defaults.global.legend.display = false;

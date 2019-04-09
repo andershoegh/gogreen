@@ -48,7 +48,9 @@ const Dashboard = () => {
             {
               <SmallCard
                 header="Produkter"
-                tileContent={<img src="../images/washMachine.png" />}
+                tileContent={
+                  <img src="../images/washMachine.png" alt="Washing machine" />
+                }
               />
             }
           </NavLink>

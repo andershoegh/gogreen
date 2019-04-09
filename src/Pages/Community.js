@@ -5,7 +5,7 @@ import communityIcon from "../images/icons8_People_50px.png";
 import Icon from "../Components/Icon/Icon";
 import WideCard from "../Components/WideCard/WideCard";
 import IndividualGraph from "../Components/CommunityGraph/CommunityGraph";
-import { Link } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const Community = () => {
   return (

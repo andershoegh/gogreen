@@ -4,7 +4,7 @@ const Icon = props => {
   const { icon } = props;
   return (
     <div>
-      <img src={icon} />
+      <img src={icon} alt="" />
     </div>
   );
 };

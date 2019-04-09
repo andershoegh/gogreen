@@ -1,6 +1,5 @@
-
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import IndividualGraph from "../Components/IndividualGraph/individualgraph";
 import SmallCard from "../Components/SmallCard/SmallCard";
 import { Row, Col } from "react-grid-system";

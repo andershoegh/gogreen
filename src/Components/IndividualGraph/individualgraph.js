@@ -9,9 +9,21 @@ const IndividualGraph = props => {
     labels: ["Red", "Green", "Yellow"],
     datasets: [
       {
-        data: [30, 50, 1000],
-        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-        hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
+        data: [50, 40, 300, 100],
+        backgroundColor: [
+          "#CFD2CE",
+          "#86BC79",
+          "#E15555",
+          "#2D2930",
+          "#6E1616"
+        ],
+        hoverBackgroundColor: [
+          "#CFD2CE",
+          "#86BC79",
+          "#E15555",
+          "#2D2930",
+          "#6E1616"
+        ]
       }
     ]
   };

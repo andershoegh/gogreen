@@ -43,7 +43,10 @@ const Navbar = props => {
             {" "}
             {title}{" "}
           </span>
-          <Link style={{ margin: "10px" }} to="/">
+          <Link
+            style={{ margin: "10px", textDecoration: "none", color: "white" }}
+            to="/"
+          >
             Log out
           </Link>
         </Row>

@@ -5,8 +5,9 @@ import { Row, Container } from "react-grid-system";
 import H2 from "../Components/H2/H2";
 import userIcon from "../images/icons8_User_50px.png";
 import communityIcon from "../images/icons8_People_100px_1.png";
-import WideCard from "../Components/WideCard/WideCard";
 import CommunityGraph from "../Components/CommunityGraph/CommunityGraph";
+import WideCardSideText from "../Components/WideCardSideText/WideCardSideText";
+import WideCard from "../Components/WideCard/WideCard";
 import { Carousel } from "react-materialize";
 import "./pages.scss";
 
@@ -22,9 +23,10 @@ const MyUsage = () => {
         </Row>
 
         <Row>
-          <WideCard
+          <WideCardSideText
             header="Green Electricity consumption"
             graph={<CommunityGraph />}
+            sideText={<p>60% af alt strøm du bruger er grøn energi.</p>}
           />
         </Row>
         <Row>

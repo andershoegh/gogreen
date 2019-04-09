@@ -2,7 +2,8 @@ import React from "react";
 import img from "../../images/Baggrund.png";
 
 const Content = {
-  backgroundImage: { image: img }
+  backgroundImage: { image: img },
+  backgroundColor: "#95e0ab"
 };
 
 const Background = () => {

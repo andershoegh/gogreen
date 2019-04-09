@@ -3,7 +3,7 @@ import { Row, Container } from "react-grid-system";
 import userIcon from "../images/icons8_User_100px_1.png";
 import communityIcon from "../images/icons8_People_50px.png";
 import Icon from "../Components/Icon/Icon";
-import WideCard from "../Components/WideCard/WideCard";
+import WideCardSideText from "../Components/WideCardSideText/WideCardSideText";
 import IndividualGraph from "../Components/CommunityGraph/CommunityGraph";
 import { Link } from "react-router-dom";
 
@@ -18,15 +18,25 @@ const Community = () => {
           <Icon icon={communityIcon} />
         </Row>
         <Row>
-          <WideCard
+          <WideCardSideText
             header="Grønt el-forbrug: <Fælleskab>"
             graph={<IndividualGraph />}
+            sideText={<p>60% af alt strøm I bruger er grøn energi.</p>}
           />
         </Row>
         <Row>
-          <WideCard
+          <WideCardSideText
             graph={<IndividualGraph />}
             header="Bidrag til fællesskabet"
+            sideText={
+              <ul>
+                <li>Fred 30%</li>
+                <li>Anders 25%</li>
+                <li>Emil 20%</li>
+                <li>Andreas 15%</li>
+                <li>Lasse 10%</li>
+              </ul>
+            }
           />
         </Row>
       </Container>

@@ -6,6 +6,9 @@ import { Row, Col } from "react-grid-system";
 import H1 from "../Components/H1/H1";
 import H2 from "../Components/H2/H2";
 import "./pages.scss";
+import washMachine from "../images/washMachine.png";
+import Icon from "../Components/Icon/Icon";
+import forecastIcon from "../images/forecastIcon.png";
 
 const columnStyle = {
   paddingLeft: "25px",
@@ -41,16 +44,19 @@ const Dashboard = () => {
         </Row>
         <Row>
           <NavLink to="/realtime">
-            {<SmallCard header="Real-tids data" />}
+            {
+              <SmallCard
+                header="Real-tids data"
+                tileContent={<Icon icon={forecastIcon} />}
+              />
+            }
           </NavLink>
 
           <NavLink to="/products">
             {
               <SmallCard
                 header="Produkter"
-                tileContent={
-                  <img src="../images/washMachine.png" alt="Washing machine" />
-                }
+                tileContent={<Icon icon={washMachine} />}
               />
             }
           </NavLink>

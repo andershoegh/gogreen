@@ -1,16 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import barGraph from "../Components/barGraph/barGraph";
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 
-const Products = () => {
-  return (
-    <div>
-      <Link to="/">Dashboard</Link>
-      <h4>Products</h4>
 
-      <barGraph />
-    </div>
-  );
-};
-
+const Products = (props) => {
+    if(props.authUser){
+        return ( 
+            <div>
+               
+            </div>
+         );
+    }
+    else{
+        return(
+            <Redirect to="/signin"></Redirect>
+        );
+    }
+   
+}
+ 
 export default Products;
+

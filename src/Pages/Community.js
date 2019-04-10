@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { Row, Container } from "react-grid-system";
 import userIcon from "../images/icons8_User_100px_1.png";
 import communityIcon from "../images/icons8_People_50px.png";
@@ -7,9 +8,10 @@ import WideCardSideText from "../Components/WideCardSideText/WideCardSideText";
 import IndividualGraph from "../Components/CommunityGraph/CommunityGraph";
 import { Link } from "react-router-dom";
 
-const Community = () => {
-  return (
-    <div>
+const Community = (props) => {
+    if(props.authUser){
+        return ( 
+            <div>
       <Container>
         <Row style={{ justifyContent: "space-evenly" }}>
           <Link to="/myusage">
@@ -41,7 +43,13 @@ const Community = () => {
         </Row>
       </Container>
     </div>
-  );
-};
-
+         );
+    }
+    else{
+        return(
+            <Redirect to="/signin"></Redirect>
+        );
+    }
+}
+ 
 export default Community;

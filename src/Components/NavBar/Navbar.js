@@ -4,6 +4,7 @@ import Icon from "../Icon/Icon";
 import dashIcon from "../../images/dashIcon.png";
 import { Container, Row } from "react-grid-system";
 import "./NavBar.css";
+import {firebase} from '../../Utils/Firebase'
 
 const Navbar = props => {
   let title = "";
@@ -24,6 +25,8 @@ const Navbar = props => {
       title = "Startside";
   }
 
+  
+   if(props.authUser){
   return (
     <div>
       <Container>
@@ -43,16 +46,17 @@ const Navbar = props => {
             {" "}
             {title}{" "}
           </span>
-          <Link
-            style={{ margin: "10px", textDecoration: "none", color: "white" }}
-            to="/"
-          >
-            Log out
-          </Link>
+       
+          <Link onClick={() => firebase.doSignOut()} to='/signin'> Log out</Link>
         </Row>
       </Container>
     </div>
+
   );
+}
+else{
+  return null;
+}
 };
 
 export default Navbar;

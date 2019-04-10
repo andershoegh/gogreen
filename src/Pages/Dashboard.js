@@ -1,5 +1,5 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink, Redirect } from 'react-router-dom';
 import IndividualGraph from "../Components/IndividualGraph/individualgraph";
 import SmallCard from "../Components/SmallCard/SmallCard";
 import { Row, Col } from "react-grid-system";
@@ -10,14 +10,11 @@ import washMachine from "../images/washMachine.png";
 import Icon from "../Components/Icon/Icon";
 import forecastIcon from "../images/forecastIcon.png";
 
-const columnStyle = {
-  paddingLeft: "25px",
-  paddingRight: "25px"
-};
 
-const Dashboard = () => {
-  return (
-    <div>
+const Dashboard = (props) => {
+  if(props.authUser){
+    return (
+        <div>
       <div>
         <H1>GoForGreen</H1>
         <H2>Shift to green energy now</H2>
@@ -63,7 +60,13 @@ const Dashboard = () => {
         </Row>
       </Col>
     </div>
-  );
-};
-
+     );
+  }
+  else{
+      return(
+          <Redirect to="/signin"></Redirect>
+      );
+  }
+}
+ 
 export default Dashboard;

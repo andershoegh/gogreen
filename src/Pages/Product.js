@@ -1,15 +1,14 @@
 import React from "react";
-import Carousel from "../Components/Carousel/Carousel";
-import { Container, Row } from "react-grid-system";
+import { Link } from "react-router-dom";
+import barGraph from "../Components/barGraph/barGraph";
 
 const Products = () => {
   return (
     <div>
-      <Container>
-        <Row style={{ justifyContent: "center" }}>
-          <Carousel />
-        </Row>
-      </Container>
+      <Link to="/">Dashboard</Link>
+      <h4>Products</h4>
+
+      <barGraph />
     </div>
   );
 };

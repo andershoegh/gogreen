@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Redirect, Link } from 'react-router-dom';
 import Icon from "../Components/Icon/Icon";
 import { Row, Container } from "react-grid-system";
 import H2 from "../Components/H2/H2";
@@ -11,9 +11,10 @@ import WideCard from "../Components/WideCard/WideCard";
 import { Carousel } from "react-materialize";
 import "./pages.scss";
 
-const MyUsage = () => {
-  return (
-    <div>
+const MyUsage = (props) => {
+    if(props.authUser){
+        return ( 
+           <div>
       <Container>
         <Row style={{ justifyContent: "space-evenly" }}>
           <Icon icon={userIcon} />
@@ -48,7 +49,14 @@ const MyUsage = () => {
         </Row>
       </Container>
     </div>
-  );
-};
-
+         );
+    }
+    else{
+        return(
+            <Redirect to="/signin"></Redirect>
+        );
+    }
+   
+}
+ 
 export default MyUsage;

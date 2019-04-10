@@ -1,75 +1,60 @@
 import React, { Component } from "react";
 import { firebase } from "../src/Utils/Firebase";
-import { Route, BrowserRouter, Redirect } from 'react-router-dom'
+import { Route, BrowserRouter } from 'react-router-dom'
 import Dashboard from './Pages/Dashboard';
 import Community from './Pages/Community';
 import MyUsage from './Pages/myUsage';
 import RealTime from './Pages/RealTime';
 import Products from './Pages/Product';
-import Navbar from './Components/NavBar/Navbar';
 import SignIn from './Pages/SignIn';
 
 
 class App extends Component {
-  state = {
-   // dbCollection: []
-   auth: firebase.trackAuthStatus(user => {
-     return user;
-   })
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      authUser: null,
+    };
+  }
 
   componentDidMount() {
-   /* firebase.trackAuthStatus(user => {
-        this.setState({auth: user})
-    }
-    )*/
-    /*firebase.trackAuthStatus.then(() =>{
-      this.setState({
-        auth: true
-      });
-      console.log(this.state.auth);
-    });*/
-
-    /*
-    const mappedDBCollection = [];
-    firebase.getData().then(r => {
-      r.forEach(doc => mappedDBCollection.push(doc.data()));
-      this.setState({ dbCollection: mappedDBCollection });
-    });*/
-
-    console.log('cello');
+   firebase.auth.onAuthStateChanged(
+      authUser => {
+        authUser
+          ? this.setState({ authUser })
+          : this.setState({ authUser: null });
+      },
+    );
   }
 
-  updateAuth = auth => {
-    console.log(auth);
-    this.setState({auth: auth});
+
+  updateAuth = authUser => {
+    //console.log("User logged in");
+    this.setState({authUser: authUser});
+   // console.log(this.state.authUser);
   }
 
-  componentDidUpdate(snapShot) {
 
-    console.log(snapShot);
-    firebase.trackAuthStatus(user => {
-      console.log(user + 'pdycho');
-      this.setState({auth: user})
+
+  componentDidUpdate() {
       /*if(!user && this.state.auth) {
         this.setState({auth: undefined})
         console.log("user signed out");
       }*/
+      console.log(this.state.authUser);
     }
-    )
-  }
 
   render() {
     return (
       <BrowserRouter>
           <div>
-            <Route path='/' component={Navbar}/>
-            <Route exact path='/' render={() => <Dashboard auth={this.state.auth} />} />
-            <Route exact path='/community' component={Community}/>
-            <Route exact path='/myusage' component={MyUsage}/>
-            <Route exact path='/realtime' component={RealTime}/>
-            <Route exact path='/products' component={Products}/>
-            <Route exact path='/signin' render={() => <SignIn updateAuth={this.updateAuth} auth={this.state.auth}/>} />
+            <Route exact path='/' render={() => <Dashboard authUser={this.state.authUser} />} />
+            <Route exact path='/community' render={() => <Community authUser={this.state.authUser}/>}/>
+            <Route exact path='/myusage' render={() => <MyUsage authUser={this.state.authUser}/>}/>
+            <Route exact path='/realtime' render={() => <RealTime authUser={this.state.authUser}/>}/>
+            <Route exact path='/products' render={() => <Products authUser={this.state.authUser}/>}/>
+            <Route exact path='/signin' render={() => <SignIn updateAuth={this.updateAuth} authUser={this.state.authUser}/>} />
           </div>
       </BrowserRouter>
     );

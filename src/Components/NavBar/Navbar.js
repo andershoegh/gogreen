@@ -3,26 +3,7 @@ import { Link } from 'react-router-dom'
 import {firebase} from '../../Utils/Firebase'
 
 const Navbar = (props) => {
-    let title = "";
-    switch(props.location.pathname){
-        case '/community':
-            title = 'Community data';
-            break;
-        case '/myusage':
-            title = 'My Usage';
-            break;
-        case '/realtime':
-            title = 'Real time data';
-            break;
-        case '/products':
-            title = 'Products';
-            break;
-        case '/signin':
-            title = 'Sign in';
-            break;
-        default:
-            title= 'Dashboard';
-    }
+    let title = props.title;
 
     return ( 
         <div>

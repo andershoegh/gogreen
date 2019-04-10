@@ -1,14 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { Redirect } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom';
+import Navbar from '../Components/NavBar/Navbar';
 
 const Dashboard = (props) => {
-  if(props.auth){
+  if(props.authUser){
     return (
-
         <div>
-            
-              
+            <Navbar title={'Dashboard'}/>
             <ul>
                 <li><NavLink to='/myusage'>My Usage</NavLink></li>
                 <li><NavLink to='/community'>Community usage</NavLink> </li>
@@ -23,7 +21,6 @@ const Dashboard = (props) => {
           <Redirect to="/signin"></Redirect>
       );
   }
-    
 }
  
 export default Dashboard;

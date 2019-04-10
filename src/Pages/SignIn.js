@@ -20,13 +20,11 @@ class SignIn extends Component {
   }
 
   /*componentDidMount(){
-    firebase.auth.onAuthStateChanged(user => {
-      this.setState({auth: user})
-    })
+
   }*/
 
   render() {
-    if(this.props.auth) return <Redirect to='/' />
+   if(this.props.authUser) return <Redirect to='/' />
     return (
       <div className="container">
         <form className="white" onSubmit={this.handleSubmit}>

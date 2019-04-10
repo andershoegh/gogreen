@@ -5,7 +5,8 @@ import {firebase} from "../Utils/Firebase";
 class SignIn extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    authError: ''
   }
   handleChange = (e) => {
     this.setState({
@@ -14,7 +15,11 @@ class SignIn extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    firebase.doSignInWithEmailAndPassword(this.state.email, this.state.password);
+    firebase.doSignInWithEmailAndPassword(this.state.email, this.state.password).catch(err=>{
+      this.setState({
+        authError: err.message
+      })
+    });
   }
 
   render() {
@@ -33,6 +38,9 @@ class SignIn extends Component {
           </div>
           <div className="input-field">
             <button>Login</button>
+          </div>
+          <div>
+          { this.state.authError ? <p>{this.state.authError}</p> : null }
           </div>
         </form>
       </div>

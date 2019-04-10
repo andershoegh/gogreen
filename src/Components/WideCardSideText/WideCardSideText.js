@@ -24,7 +24,7 @@ const styles = {
 };
 
 function WideCard(props) {
-  const { classes, header, graph } = props;
+  const { classes, header, graph, sideText } = props;
 
   return (
     <Card className={classes.card}>
@@ -40,6 +40,15 @@ function WideCard(props) {
           <Col xs={6} className>
             {graph}
           </Col>
+          {
+            <Col xs={6}>
+              {
+                <Typography className={classes.graphText}>
+                  {sideText}
+                </Typography>
+              }
+            </Col>
+          }
         </Row>
       </CardContent>
       <CardActions />

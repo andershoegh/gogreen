@@ -1,7 +1,7 @@
-import app from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
-import { firebaseConfig } from '../Config/firebaseConfig';
+import app from "firebase/app";
+import "firebase/firestore";
+import "firebase/auth";
+import { firebaseConfig } from "../Config/firebaseConfig";
 
 class Firebase {
   constructor() {
@@ -10,13 +10,13 @@ class Firebase {
     this.auth = app.auth();
   }
 
-  getData = () => this.db.collection('test-collection').get();
+  getData = () => this.db.collection("test-collection").get();
 
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
 
   doSignOut = () => this.auth.signOut();
 
-  trackAuthStatus = (callback) => this.auth.onAuthStateChanged(callback )
+  trackAuthStatus = callback => this.auth.onAuthStateChanged(callback);
 }
-export const firebase = new Firebase()
+export const firebase = new Firebase();

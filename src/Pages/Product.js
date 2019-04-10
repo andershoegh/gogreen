@@ -1,22 +1,22 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+import React from "react";
+import { Redirect } from "react-router-dom";
+import Carousel from "../Components/Carousel/Carousel";
+import { Container, Row } from "react-grid-system";
 
+const Products = props => {
+  if (props.authUser) {
+    return (
+      <div>
+        <Container>
+          <Row style={{ justifyContent: "center" }}>
+            <Carousel />
+          </Row>
+        </Container>
+      </div>
+    );
+  } else {
+    return <Redirect to="/signin" />;
+  }
+};
 
-const Products = (props) => {
-    if(props.authUser){
-        return ( 
-            <div>
-               
-            </div>
-         );
-    }
-    else{
-        return(
-            <Redirect to="/signin"></Redirect>
-        );
-    }
-   
-}
- 
 export default Products;
-

@@ -1,12 +1,11 @@
 import React from 'react';
-import Navbar from '../Components/NavBar/Navbar';
 import { Redirect } from 'react-router-dom';
 
 const MyUsage = (props) => {
     if(props.authUser){
         return ( 
             <div>
-               <Navbar title={'Real time data'}/>
+              
             </div>
          );
     }

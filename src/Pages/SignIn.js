@@ -14,14 +14,8 @@ class SignIn extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    firebase.doSignInWithEmailAndPassword(this.state.email, this.state.password).then(cred=>{
-      this.props.updateAuth(cred);
-    })
+    firebase.doSignInWithEmailAndPassword(this.state.email, this.state.password);
   }
-
-  /*componentDidMount(){
-
-  }*/
 
   render() {
    if(this.props.authUser) return <Redirect to='/' />

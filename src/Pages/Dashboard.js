@@ -1,12 +1,10 @@
 import React from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
-import Navbar from '../Components/NavBar/Navbar';
 
 const Dashboard = (props) => {
   if(props.authUser){
     return (
         <div>
-            <Navbar title={'Dashboard'}/>
             <ul>
                 <li><NavLink to='/myusage'>My Usage</NavLink></li>
                 <li><NavLink to='/community'>Community usage</NavLink> </li>

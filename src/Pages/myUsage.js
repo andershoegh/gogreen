@@ -1,13 +1,13 @@
 import React from "react";
 import { Redirect, Link } from "react-router-dom";
 import Icon from "../Components/Icon/Icon";
-import { Row, Container } from "react-grid-system";
+import { Col, Row, Container } from "react-grid-system";
 import userIcon from "../images/icons8_User_50px.png";
 import communityIcon from "../images/icons8_People_100px_1.png";
 import CommunityGraph from "../Components/CommunityGraph/CommunityGraph";
 import WideCardSideText from "../Components/WideCardSideText/WideCardSideText";
 import WideCard from "../Components/WideCard/WideCard";
-import Carousel from "../Components/Carousel/Carousel";
+import CarouselWrapper from "../Components/Carousel/Carousel";
 import "./pages.scss";
 
 const MyUsage = props => {
@@ -33,7 +33,9 @@ const MyUsage = props => {
             <WideCard header="Grøn sort fordeling pr. dag" />
           </Row>
           <Row style={{ justifyContent: "center" }}>
-            <Carousel header={"Produkt % gennemsnitlig grøn"} />
+            <Col xs={12}>
+              <CarouselWrapper />
+            </Col>
           </Row>
         </Container>
       </div>

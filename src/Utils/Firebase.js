@@ -10,13 +10,11 @@ class Firebase {
     this.auth = app.auth();
   }
 
-  getData = () => this.db.collection("test-collection").get();
+  getUsers = () => this.db.collection("users").get();
 
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
 
   doSignOut = () => this.auth.signOut();
-
-  trackAuthStatus = callback => this.auth.onAuthStateChanged(callback);
 }
 export const firebase = new Firebase();

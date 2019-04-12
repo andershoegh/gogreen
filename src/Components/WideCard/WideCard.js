@@ -37,7 +37,7 @@ function WideCard(props) {
           </Col>
         </Row>
         <Row>
-          <Col xs={6} className>
+          <Col xs={6}>
             {graph}
           </Col>
         </Row>

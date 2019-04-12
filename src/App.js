@@ -63,7 +63,6 @@ class App extends Component {
   };
 
   render() {
-    //if(this.state.community) console.log(this.state.community);
     return (
       <BrowserRouter>
         <div>

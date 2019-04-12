@@ -10,10 +10,6 @@ import washMachine from "../images/washMachine.png";
 import Icon from "../Components/Icon/Icon";
 import forecastIcon from "../images/forecastIcon.png";
 
-const rowStyle = {
-  justifyContent: "center"
-};
-
 const Dashboard = props => {
   if (props.authUser) {
     return (

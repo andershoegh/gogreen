@@ -27,32 +27,17 @@ const Navbar = props => {
 
   if (props.authUser) {
     return (
-      <div>
-        <Container>
-          <Row style={{ justifyContent: "space-between" }}>
-            <Link style={{ margin: "10px" }} to="/">
-              <Icon icon={dashIcon} />
-            </Link>
-            <span
-              style={{
-                margin: "10px",
-                fontFamily: "Montserrat",
-                fontWeight: "bold",
-                fontSize: "20px",
-                color: "white"
-              }}
-            >
-              {" "}
-              {title}{" "}
-            </span>
-
-            <Link onClick={() => firebase.doSignOut()} to="/signin">
-              {" "}
-              Log out
-            </Link>
-          </Row>
-        </Container>
-      </div>
+      <Container>
+        <Row className="navBarRow">
+          <Link to="/">
+            <Icon icon={dashIcon} />
+          </Link>
+          <span className="navBarTitle">{title}</span>
+          <Link onClick={() => firebase.doSignOut()} to="/signin">
+            Log out
+          </Link>
+        </Row>
+      </Container>
     );
   } else {
     return null;

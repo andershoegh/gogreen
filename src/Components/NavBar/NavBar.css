@@ -1,3 +1,12 @@
-.Container {
+.navBarRow {
+  display: flex;
   justify-content: space-between;
+}
+
+.navBarTitle {
+  margin: 10px;
+  font-family: Montserrat;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
 }

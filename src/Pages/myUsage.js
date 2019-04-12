@@ -10,8 +10,8 @@ import WideCard from "../Components/WideCard/WideCard";
 import CarouselWrapper from "../Components/Carousel/Carousel";
 import "./pages.scss";
 
-const MyUsage = props => {
-  if (props.authUser) {
+const MyUsage = ({ authUser, user }) => {
+  if (authUser) {
     return (
       <div>
         <Container>
@@ -26,7 +26,7 @@ const MyUsage = props => {
             <WideCardSideText
               header="Green Electricity consumption"
               graph={<CommunityGraph />}
-              sideText={<p>60% af alt strøm du bruger er grøn energi.</p>}
+              sideText="60% af alt strøm du bruger er grøn energi."
             />
           </Row>
           <Row>

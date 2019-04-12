@@ -9,9 +9,11 @@ body {
 
   background-image: url(./images/backgroundGreen.png);
   object-fit: cover;
+  background-size: cover;
   height: 100vh;
   width: 100vw;
   background-color: hsl(139, 55%, 73%);
+  overflow: hidden;
 }
 
 code {

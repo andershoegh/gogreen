@@ -3,6 +3,9 @@ import Slider from "react-slick";
 import "./Carousel.css";
 import "../../../node_modules/slick-carousel/slick/slick.css";
 import "../../../node_modules/slick-carousel/slick/slick-theme.css";
+import vaskemaskine from "../../images/Vaskemaskine-firkant.svg";
+import ovn from "../../images/Ovn-firkant.svg";
+import støvsuger from "../../images/støvsuger-firkant.svg";
 
 export default class Carousel extends Component {
   render() {
@@ -12,29 +15,23 @@ export default class Carousel extends Component {
       infinite: true,
       centerPadding: "80px",
       slidesToShow: 1,
-      speed: 500
+      speed: 500,
+      prevArrow: false,
+      nextArrow: false,
+      dots: false
     };
     return (
       <div>
         <p>{this.props.header}</p>
         <Slider {...settings}>
           <div>
-            <h3>1</h3>
+            <img src={vaskemaskine} />
           </div>
           <div>
-            <h3>2</h3>
+            <img src={ovn} />
           </div>
           <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
+            <img src={støvsuger} />
           </div>
         </Slider>
       </div>

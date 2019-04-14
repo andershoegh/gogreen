@@ -6,6 +6,7 @@ import { DatePicker, TimePicker } from "antd";
 import moment from "moment";
 import { format } from "path";
 import axios from "axios";
+import "antd/dist/antd.css";
 
 moment.fn.roundNext5Min = function() {
   let intervals = Math.floor(this.minutes() / 5);

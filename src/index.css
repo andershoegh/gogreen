@@ -6,7 +6,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #95e0ab;
+
+  background-image: url(./images/backgroundGreen.png);
+  object-fit: cover;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  background-color: hsl(139, 55%, 73%);
+  overflow: hidden;
 }
 
 code {

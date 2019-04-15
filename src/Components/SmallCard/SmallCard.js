@@ -8,8 +8,6 @@ import Typography from "@material-ui/core/Typography";
 
 const styles = {
   card: {
-    width: "154px",
-    height: "154px",
     textAlign: "center",
     padding: "0px",
     margin: "11px",

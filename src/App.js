@@ -8,6 +8,7 @@ import RealTime from "./Pages/RealTime";
 import Products from "./Pages/Product";
 import SignIn from "./Pages/SignIn";
 import Navbar from "./Components/NavBar/Navbar";
+import axios from "axios";
 
 class App extends Component {
   constructor(props) {
@@ -21,6 +22,10 @@ class App extends Component {
 
   componentDidMount() {
     firebase.auth.onAuthStateChanged(user => {
+    //   axios.get('http://localhost:4000/users/Auth_UID').then(res => {
+    //   this.setState({data: res.data});
+    // });
+
       this.setState({ authUser: user, user });
       localStorage.setItem("authUser", JSON.stringify(user));
       this.getUser();

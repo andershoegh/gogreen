@@ -18,19 +18,22 @@ export default class Carousel extends Component {
       speed: 500,
       prevArrow: false,
       nextArrow: false,
-      dots: false
+      dots: false,
+      afterChange: current => {
+        this.props.handleSlide(current);
+      }
     };
     return (
       <div>
         <p>{this.props.header}</p>
-        <Slider {...settings}>
-          <div>
+        <Slider {...settings} onSwipe={() => this.props.handleSlide("Hello")}>
+          <div id="washingMachine">
             <img src={vaskemaskine} />
           </div>
-          <div>
+          <div id="oven">
             <img src={ovn} />
           </div>
-          <div>
+          <div id="vaccuum">
             <img src={støvsuger} />
           </div>
         </Slider>

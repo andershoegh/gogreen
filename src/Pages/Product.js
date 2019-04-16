@@ -36,7 +36,6 @@ class Products extends Component {
   handleDateChange = (date, dateString) => {
     this.setState({
       date: date.format("YYYY-MM-DD")
-      //date: moment(dateString, "DD / MM - YYYY").format("YYYY-MM-DD")
     });
   };
 
@@ -72,13 +71,21 @@ class Products extends Component {
       });
   };
 
+  handleSlide = product => {
+    const products = ["washer", "oven", "vacuum"];
+
+    this.setState({
+      product: products[product]
+    });
+  };
+
   render() {
     if (this.props.authUser) {
       return (
         <div>
           <Container>
             <Row style={{ justifyContent: "center" }}>
-              <Carousel />
+              <Carousel handleSlide={this.handleSlide} />
             </Row>
           </Container>
 

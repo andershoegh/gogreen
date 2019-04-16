@@ -1,0 +1,13 @@
+a {
+    text-decoration: none;
+}
+
+.navCards {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0px;
+}
+
+.subHeader {
+    margin-bottom: 50px;
+}

@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Icon from "../Icon/Icon";
 import dashIcon from "../../images/dashIcon.png";
-import { Container, Row } from "react-grid-system";
+import { Container } from "react-grid-system";
 import "./NavBar.css";
 import { firebase } from "../../Utils/Firebase";
+import exitIcon from "../../images/exit.png";
 
 const Navbar = props => {
   let title = "";
@@ -22,25 +23,41 @@ const Navbar = props => {
       title = "Produkter";
       break;
     default:
-      title = "Startside";
+      title = "";
   }
 
   if (props.authUser) {
     return (
       <Container>
-        <Row className="navBarRow">
-          <Link to="/">
-            <Icon icon={dashIcon} />
-          </Link>
-          <span className="navBarTitle">{title}</span>
-          <Link onClick={() => firebase.doSignOut()} to="/signin">
-            Log out
-          </Link>
-        </Row>
+        <div className="navBar-wrapper">
+          <div className="logo-wrapper">
+            <Link className="logo-link" to="/">
+              <Icon icon={dashIcon} />
+            </Link>
+          </div>
+
+          <div className="title-wrapper">
+            <span className="navBarTitle">{title}</span>
+          </div>
+
+          <div className="logOut-wrapper">
+            <Link onClick={() => firebase.doSignOut()} to="/signin">
+              <Icon icon={exitIcon} />
+            </Link>
+          </div>
+        </div>
       </Container>
     );
   } else {
-    return null;
+    return (
+      <Container>
+        <div className="navBar-wrapper">
+          <div className="logo-wrapper">
+            <Icon icon={dashIcon} />
+          </div>
+        </div>
+      </Container>
+    );
   }
 };
 

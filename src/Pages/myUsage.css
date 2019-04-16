@@ -1,0 +1,10 @@
+.toggle-data {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.carousel-wrapper {
+    justify-content: center;
+}

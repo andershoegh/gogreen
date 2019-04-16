@@ -1,12 +1,30 @@
-.navBarRow {
-  display: flex;
-  justify-content: space-between;
+.navBar-wrapper {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center !important;
+}
+
+.title-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .navBarTitle {
-  margin: 10px;
-  font-family: Montserrat;
-  font-weight: bold;
-  font-size: 20px;
-  color: white;
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+
+.logOut-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }

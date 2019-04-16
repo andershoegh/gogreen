@@ -1,0 +1,23 @@
+.wideCard {
+    margin: 30px auto;
+    background-color: white;
+    width: 40vh;
+    border-radius: 10px;
+    box-shadow: 3px 3px 15px -5px black;
+}
+
+.wideCardHeader {
+    text-align: center;
+    padding: 10px 10px;
+}
+
+.cardCont {
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 15px;
+}
+
+.content {
+    width: 50%;
+    padding-right: 15px;
+}

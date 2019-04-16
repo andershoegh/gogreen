@@ -1,0 +1,15 @@
+.smallCard {
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 3px;
+    margin-bottom: 10px;
+    background-color: white;
+    height: 18vh;
+    width: 18vh;
+    border-radius: 10px;
+    box-shadow: 3px 3px 15px -5px black;
+}
+
+h6 {
+    margin-bottom: 15px;
+}

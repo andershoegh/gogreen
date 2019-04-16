@@ -1,45 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-
-const styles = {
-  card: {
-    textAlign: "center",
-    padding: "0px",
-    margin: "11px",
-    align: "center",
-    textDecoration: "none"
-  },
-  p: {
-    paddingBottom: "12px"
-  },
-  a: {
-    textDecoration: "none"
-  }
-};
+import "./SmallCard.css";
 
 function SmallCard(props) {
-  const { classes, header, tileContent } = props;
+  const { header, tileContent } = props;
 
   return (
-    <Card className={classes.card}>
-      <CardContent>
-        <Typography component="p" className={classes.p}>
-          {header}
-        </Typography>
-        {tileContent}
-      </CardContent>
-      <CardActions />
-    </Card>
+    <div className="smallCard">
+      <h6>{header}</h6>
+      {tileContent}
+    </div>
   );
 }
-
-SmallCard.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(SmallCard);
+export default SmallCard;

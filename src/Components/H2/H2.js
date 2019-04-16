@@ -1,6 +1,6 @@
-import React from 'react';
-import './H2.scss';
+import React from "react";
+import "./H2.scss";
 
-const H1 = ({ children }) => <h2 className="h2">{children}</h2>;
+const H2 = ({ children }) => <h2 className="h2">{children}</h2>;
 
-export default H1;
+export default H2;

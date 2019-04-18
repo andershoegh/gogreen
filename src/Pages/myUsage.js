@@ -27,7 +27,7 @@ class MyUsage extends Component {
       const energy = 100 - greenEnergy;
 
       this.setState({
-        graphData: [greenEnergy, energy],
+        graphData: [greenEnergy.toFixed(0), energy.toFixed(0)],
         greenEnergy: greenEnergy.toFixed(0)
       });
     });
@@ -55,7 +55,7 @@ class MyUsage extends Component {
             />
           </div>
 
-          <div className="carousel-wrapper">
+          <div>
             <CarouselWrapper />
           </div>
         </Container>

@@ -7,51 +7,7 @@ import {
   CartesianGrid,
   Tooltip
 } from "recharts";
-
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210
-  },
-  {
-    name: "Page C",
-    uv: -1000,
-    pv: 9800,
-    amt: 2290
-  },
-  {
-    name: "Page D",
-    uv: 500,
-    pv: 3908,
-    amt: 2000
-  },
-  {
-    name: "Page E",
-    uv: -2000,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: "Page F",
-    uv: -250,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
-  }
-];
+import axios from "axios";
 
 const gradientOffset = () => {
   const dataMax = 1000;
@@ -71,13 +27,25 @@ const off = gradientOffset();
 
 export default class ForecastChart extends PureComponent {
   static jsfiddleUrl = "https://jsfiddle.net/alidingling/64v6ocdx/";
+  state = {
+    data: []
+  };
 
   render() {
+    if (this.state.data.length < 1) {
+      axios.get("http://localhost:4000/forecast").then(res => {
+        console.log(res.data);
+        this.setState({
+          data: res.data
+        });
+      });
+    }
+
     return (
       <AreaChart
         width={375}
         height={256}
-        data={data}
+        data={this.state.data}
         margin={{
           top: 10,
           right: 30,
@@ -86,9 +54,11 @@ export default class ForecastChart extends PureComponent {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        {/* <XAxis dataKey="name" />  */}
+        <XAxis dataKey="Minutes5DK" hide="true" />
+        <YAxis dataKey="CO2Emission" hide="true" />
 
         <Tooltip />
+
         <defs>
           <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
             <stop offset={off} stopColor="green" stopOpacity={1} />
@@ -97,10 +67,16 @@ export default class ForecastChart extends PureComponent {
         </defs>
         <Area
           type="monotone"
-          dataKey="uv"
+          dataKey="CO2Emission"
           stroke="#000"
           fill="url(#splitColor)"
         />
+        {/* <Area
+          name="Time"
+          type="monotone"
+          dataKey="Minutes5DK"
+          stroke="#4968ad"
+        /> */}
       </AreaChart>
     );
   }

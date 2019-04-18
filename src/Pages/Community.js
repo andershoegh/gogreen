@@ -19,7 +19,7 @@ class Community extends Component {
     this.state = {
       graphData: [],
       greenEnergy: "",
-      goal: 50 //sets the goal for the achievement bar
+      goal: 80 //sets the goal for the achievement bar
     };
     this.updateGraph();
   }
@@ -76,7 +76,7 @@ class Community extends Component {
               }
             />
           </div>
-          <p>Ugens fællesmål: 50% samlet grøn strøm</p>
+          <p>Ugens fællesmål: {this.state.goal}% samlet grøn strøm</p>
           <Row className="progressRow">
             <Col xs={2}>
               <Icon class="prizeIcon" icon={prizeIcon} />

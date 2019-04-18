@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import { Container } from "react-grid-system";
+import { Container, Row, Col } from "react-grid-system";
 import { firebase } from "../Utils/Firebase";
 import userIcon from "../images/icons8_User_100px_1.png";
 import communityIcon from "../images/icons8_People_50px.png";
@@ -9,13 +9,17 @@ import WideCardSideText from "../Components/WideCardSideText/WideCardSideText";
 import IndividualGraph from "../Components/CommunityGraph/CommunityGraph";
 import { Link } from "react-router-dom";
 import CommunityGraph from "../Components/CommunityGraph/CommunityGraph";
+import { Progress } from "antd";
+import "./Community.css";
+import prizeIcon from "../images/prize.svg";
 
 class Community extends Component {
   constructor(props) {
     super(props);
     this.state = {
       graphData: [],
-      greenEnergy: ""
+      greenEnergy: "",
+      goal: 50 //sets the goal for the achievement bar
     };
     this.updateGraph();
   }
@@ -72,6 +76,23 @@ class Community extends Component {
               }
             />
           </div>
+          <p>Ugens fællesmål: 50% samlet grøn strøm</p>
+          <Row className="progressRow">
+            <Col xs={2}>
+              <Icon class="prizeIcon" icon={prizeIcon} />
+            </Col>
+            <Col xs={8}>
+              <Progress
+                percent={(
+                  (this.state.greenEnergy / this.state.goal) *
+                  100
+                ).toFixed(0)}
+                strokeWidth={12}
+                status="active"
+                strokeColor="#6ecd96"
+              />
+            </Col>
+          </Row>
         </Container>
       );
     } else {

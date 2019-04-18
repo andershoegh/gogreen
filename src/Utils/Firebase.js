@@ -10,7 +10,7 @@ class Firebase {
     this.auth = app.auth();
   }
 
-  getUsers = () => this.db.collection("users").get();
+  getUsers = () => this.db.collection("test-collection").get();
 
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);

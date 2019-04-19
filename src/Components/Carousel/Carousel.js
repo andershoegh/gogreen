@@ -26,7 +26,7 @@ export default class Carousel extends Component {
     return (
       <div>
         <p>{this.props.header}</p>
-        <Slider {...settings} onSwipe={() => this.props.handleSlide("Hello")}>
+        <Slider {...settings}>
           <div id="washingMachine">
             <img src={vaskemaskine} alt={"washer"} />
           </div>

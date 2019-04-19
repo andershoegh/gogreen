@@ -1,0 +1,18 @@
+.progressRow {
+  width: 100%;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0px !important;
+}
+
+.ant-progress-text {
+  color: white !important;
+}
+
+p {
+  color: white;
+}
+
+.prizeIcon {
+  color: white;
+}

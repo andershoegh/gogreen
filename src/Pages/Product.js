@@ -118,7 +118,6 @@ class Products extends Component {
         minutes.push(i);
       }
     }
-    console.log("minutes: " + minutes);
     return minutes;
   };
 

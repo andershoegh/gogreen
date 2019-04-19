@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import Icon from "../Components/Icon/Icon";
-import { Container, Row, Col } from "react-grid-system";
+import { Container, Row } from "react-grid-system";
 import userIcon from "../images/icons8_User_50px.png";
 import communityIcon from "../images/icons8_People_100px_1.png";
 import WideCardSideText from "../Components/WideCardSideText/WideCardSideText";
@@ -21,7 +21,7 @@ class MyUsage extends Component {
     };
   }
 
-  handleSlide = product => {
+  chooseProductFirst = product => {
     const products = ["washer", "oven", "vacuum"];
 
     this.setState({
@@ -40,6 +40,8 @@ class MyUsage extends Component {
     }
   }
   componentDidMount() {
+    this.chooseProductFirst(0);
+
     if (this.props.user) {
       this.updateGraph();
     }
@@ -56,9 +58,6 @@ class MyUsage extends Component {
       greenEnergy: greenEnergy.toFixed(0)
     });
   };
-  componentDidMount() {
-    this.handleSlide(0);
-  }
   handleSlide = product => {
     const products = ["washer", "oven", "dryer"];
     const greenEnergy = this.props.user.data.products[products[product]][

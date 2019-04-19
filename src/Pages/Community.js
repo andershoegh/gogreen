@@ -18,7 +18,7 @@ class Community extends Component {
       totalGraphData: [],
       greenEnergy: "",
       whoIsBestGraphData: [],
-      whoIsBestNames: []
+      whoIsBestNames: [],
       goal: 80 //sets the goal for the achievement bar
     };
   }

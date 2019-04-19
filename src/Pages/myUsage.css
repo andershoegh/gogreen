@@ -8,3 +8,8 @@
 .carousel-wrapper {
   justify-content: center;
 }
+
+.productCircle {
+  position: absolute;
+  top: 290px;
+}

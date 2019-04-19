@@ -4,7 +4,6 @@ import Carousel from "../Components/Carousel/Carousel";
 import { Container, Row } from "react-grid-system";
 import { DatePicker, TimePicker } from "antd";
 import moment from "moment";
-//import { format } from "path";
 import axios from "axios";
 import "antd/dist/antd.css";
 
@@ -28,7 +27,7 @@ class Products extends Component {
       .format("HH:mm"),
     timeEnd: moment()
       .roundNext5Min()
-      .add(5, "minutes")
+      .add(2, "hours")
       .format("HH:mm"),
     product: "washer",
     percentGreen: null
@@ -42,7 +41,7 @@ class Products extends Component {
 
   axiosGetGreenEnergy = () => {
     axios
-      .get("http://localhost:4000/howGreenInTimePeriod", {
+      .get("https://go-greener.herokuapp.com/howGreenInTimePeriod", {
         params: {
           startTime: this.state.timeStart,
           endTime: this.state.timeEnd,
@@ -103,26 +102,45 @@ class Products extends Component {
   };
   getDisabledEndHours = () => {
     let hours = [];
-    console.log(moment(this.state.timeStart, "HH:mm"));
     for (let i = 0; i < moment(this.state.timeStart, "HH:mm").hour(); i++) {
       hours.push(i);
     }
-    console.log("Hours: " + hours);
     return hours;
   };
   getDisabledEndMinutes = selectedHour => {
     let minutes = [];
-    console.log(selectedHour + " Is the selected hours");
     if (selectedHour === moment(this.state.timeStart, "HH:mm").hour()) {
       for (
         let i = 0;
-        i < moment(this.state.timeStart, "HH:mm").minute();
-        i + 5
+        i <= moment(this.state.timeStart, "HH:mm").minute();
+        i += 5
       ) {
         minutes.push(i);
       }
     }
     console.log("minutes: " + minutes);
+    return minutes;
+  };
+
+  getDisabledStartHours = () => {
+    let hours = [];
+    for (let i = 24; i > moment(this.state.timeEnd, "HH:mm").hour(); i--) {
+      hours.push(i);
+    }
+    return hours;
+  };
+  getDisabledStartMinutes = selectedHour => {
+    let minutes = [];
+    console.log();
+    if (selectedHour === moment(this.state.timeEnd, "HH:mm").hour()) {
+      for (
+        let i = 60;
+        i >= moment(this.state.timeEnd, "HH:mm").minute();
+        i -= 5
+      ) {
+        minutes.push(i);
+      }
+    }
     return minutes;
   };
 
@@ -159,6 +177,10 @@ class Products extends Component {
               defaultValue={moment(this.state.timeStart, "HH:mm")}
               format="HH:mm"
               minuteStep={5}
+              disabledHours={() => this.getDisabledStartHours()}
+              disabledMinutes={selectedHour =>
+                this.getDisabledStartMinutes(selectedHour)
+              }
               onChange={(time, timeString) =>
                 this.handleTimeChange(time, timeString, "Start")
               }
@@ -169,12 +191,12 @@ class Products extends Component {
               defaultValue={moment(this.state.timeEnd, "HH:mm")}
               format="HH:mm"
               minuteStep={5}
-              onChange={(time, timeString) =>
-                this.handleTimeChange(time, timeString, "End")
-              }
               disabledHours={() => this.getDisabledEndHours()}
               disabledMinutes={selectedHour =>
                 this.getDisabledEndMinutes(selectedHour)
+              }
+              onChange={(time, timeString) =>
+                this.handleTimeChange(time, timeString, "End")
               }
             />
 

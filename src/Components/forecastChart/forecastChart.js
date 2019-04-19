@@ -33,7 +33,7 @@ export default class ForecastChart extends PureComponent {
 
   render() {
     if (this.state.data.length < 1) {
-      axios.get("http://localhost:4000/forecast").then(res => {
+      axios.get("https://go-greener.herokuapp.com/forecast").then(res => {
         console.log(res.data);
         this.setState({
           data: res.data
@@ -61,8 +61,8 @@ export default class ForecastChart extends PureComponent {
 
         <defs>
           <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-            <stop offset={off} stopColor="green" stopOpacity={1} />
             <stop offset={off} stopColor="red" stopOpacity={1} />
+            <stop offset={off} stopColor="green" stopOpacity={1} />
           </linearGradient>
         </defs>
         <Area
@@ -71,12 +71,6 @@ export default class ForecastChart extends PureComponent {
           stroke="#000"
           fill="url(#splitColor)"
         />
-        {/* <Area
-          name="Time"
-          type="monotone"
-          dataKey="Minutes5DK"
-          stroke="#4968ad"
-        /> */}
       </AreaChart>
     );
   }

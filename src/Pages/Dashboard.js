@@ -9,16 +9,25 @@ import washMachine from "../images/washMachine.png";
 import Icon from "../Components/Icon/Icon";
 import forecastIcon from "../images/forecastIcon.png";
 import "./Dashboard.css";
+import GreenBgImg from "../images/backgroundGreen.png";
+import RedBgImg from "../images/backgroundRed.png";
 
 const Dashboard = props => {
+  const gSubHead = "Shit to green energy now";
+  const rSubHead = "Wait to use energy till it is green";
+
+  const bgImg = props.isGreen ? GreenBgImg : RedBgImg;
+  const subheader = props.isGreen ? gSubHead : rSubHead;
+
   if (props.authUser) {
+    document.body.style.backgroundImage = `url(${bgImg})`;
     return (
       <Container>
         <div>
           <H1>GoForGreen</H1>
         </div>
         <div className="subHeader">
-          <H2>Shift to green energy now</H2>
+          <H2>{subheader}</H2>
         </div>
         <div className="navCards">
           <NavLink to="/myusage">

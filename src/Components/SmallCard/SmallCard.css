@@ -1,15 +1,17 @@
 .smallCard {
     text-align: center;
-    padding-bottom: 20px;
-    padding-top: 3px;
+    padding-top: 20px;
     margin-bottom: 10px;
     background-color: white;
-    height: 18vh;
-    width: 18vh;
+    height: 42vw;
+    width: 42vw;
     border-radius: 10px;
     box-shadow: 3px 3px 15px -5px black;
+    display: flex;
+    flex-flow: column;
 }
 
-h6 {
-    margin-bottom: 15px;
+.smGraph {
+    padding-top: 10px;
+    flex-grow: 1;
 }

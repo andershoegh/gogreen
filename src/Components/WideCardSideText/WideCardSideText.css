@@ -1,7 +1,7 @@
 .wideCard {
-    margin: 30px auto;
+    margin: 5vh auto;
     background-color: white;
-    width: 40vh;
+    width: 90vw;
     border-radius: 10px;
     box-shadow: 3px 3px 15px -5px black;
 }
@@ -15,9 +15,12 @@
     display: flex;
     justify-content: space-evenly;
     padding-bottom: 15px;
+    padding-right: 15px;
 }
 
 .content {
     width: 50%;
     padding-right: 15px;
+    padding-left: 15px;
+    height: 16vh;
 }

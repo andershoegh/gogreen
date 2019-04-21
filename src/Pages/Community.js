@@ -7,11 +7,16 @@ import Icon from "../Components/Icon/Icon";
 import WideCardSideText from "../Components/WideCardSideText/WideCardSideText";
 import IndividualGraph from "../Components/CommunityGraph/CommunityGraph";
 import { Link } from "react-router-dom";
+import "./myUsage.css";
 
-const Community = ({ community, authUser }) => {
+const Community = ({ community, authUser, isGreen }) => {
+  const color = isGreen ? "circleGreen" : "circleRed";
+
   if (authUser) {
+    document.body.style.backgroundImage = ``;
     return (
       <Container>
+        <div className={`circle cCircle ${color}`} />
         <div className="toggle-data">
           <Link to="/myusage">
             <Icon icon={userIcon} />

@@ -1,6 +1,7 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { defaults } from "react-chartjs-2";
+import "./CommunityGraph.css";
 defaults.global.legend.display = false;
 
 const IndividualGraph = () => {
@@ -30,12 +31,7 @@ const IndividualGraph = () => {
 
   return (
     <div className="graph">
-      <Doughnut
-        data={data}
-        width={110}
-        height={110}
-        options={{ maintainAspectRatio: false }}
-      />
+      <Doughnut data={data} options={{ maintainAspectRatio: false }} />
     </div>
   );
 };

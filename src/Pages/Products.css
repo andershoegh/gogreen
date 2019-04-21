@@ -1,12 +1,3 @@
-.toggle-data {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.carousel-wrapper {
-    justify-content: center;
-}
-
 .circle {
     position: absolute;
     top: -30vh;
@@ -16,10 +7,6 @@
     box-shadow: 3px 3px 15px -5px black;
     z-index: -1;
     overflow: hidden;
-}
-
-.cCircle {
-    height: 90vh !important;
 }
 
 .circleGreen {

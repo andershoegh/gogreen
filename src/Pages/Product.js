@@ -69,6 +69,14 @@ class Products extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
+    if (this.state.timeStart >= this.state.timeEnd) {
+      alert(
+        "Starttidspunktet du har valgt, er senere end sluttidspunktet.\nVenligst ændre det og prøv igen."
+      );
+      return null;
+    }
+
     const formattedTimeStart = this.state.date + " " + this.state.timeStart;
     const formattedTimeEnd = this.state.date + " " + this.state.timeEnd;
 

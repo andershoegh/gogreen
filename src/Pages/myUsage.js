@@ -78,7 +78,7 @@ class MyUsage extends Component {
 
     if (this.props.authUser) {
       return (
-        <Container>
+        <Container className="upperContainer">
           <div className={`circle ${color}`} />;
           <div className="toggle-data">
             <Icon icon={userIcon} />
@@ -95,37 +95,37 @@ class MyUsage extends Component {
                 "% af alt strøm du bruger er grøn energi."
               }
             />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "120px"
+              }}
+            >
+              <Progress
+                type="circle"
+                percent={this.state.productPercent}
+                width={127}
+                className="productCircle"
+                showInfo={false}
+                strokeColor="#89d09e"
+              />
+              <p>
+                {this.state.product +
+                  " er " +
+                  this.state.productPercent +
+                  "% grøn i gennemsnit"}
+              </p>
+            </div>
+            <Row
+              style={{
+                justifyContent: "center",
+                marginLeft: "-19px"
+              }}
+            >
+              <Carousel handleSlide={this.handleSlide} />
+            </Row>
           </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center"
-            }}
-          >
-            <Progress
-              type="circle"
-              percent={this.state.productPercent}
-              width={127}
-              className="productCircle"
-              showInfo={false}
-              strokeColor="#6ecd96"
-            />
-            <p>
-              {this.state.product +
-                " er " +
-                this.state.productPercent +
-                "% grøn i gennemsnit"}
-            </p>
-          </div>
-          <Row
-            style={{
-              justifyContent: "center",
-              top: "50px",
-              marginLeft: "-19px"
-            }}
-          >
-            <Carousel handleSlide={this.handleSlide} />
-          </Row>
         </Container>
       );
     } else {

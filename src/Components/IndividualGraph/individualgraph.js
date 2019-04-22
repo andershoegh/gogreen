@@ -8,20 +8,20 @@ const IndividualGraph = ({ graphData }) => {
   // This comp contains dummy data - should be replaced by connection with DB
 
   const data = {
-    labels: ["Red", "Green", "Yellow"],
+    labels: ["Rød", "Grøn", "Yellow"],
     datasets: [
       {
         data: graphData,
         backgroundColor: [
-          "#CFD2CE",
-          "#86BC79",
+          "#ed6666",
+          "#92ba80",
           "#E15555",
           "#2D2930",
           "#6E1616"
         ],
         hoverBackgroundColor: [
-          "#CFD2CE",
-          "#86BC79",
+          "#ed6666",
+          "#92ba80",
           "#E15555",
           "#2D2930",
           "#6E1616"

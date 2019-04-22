@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import ForecastChart from "../Components/forecastChart";
 import { Container } from "react-grid-system";
+import ForecastChart from "../Components/forecastChart/forecastChart";
 import ForecastPolygon from "../Components/ForecastPolygon/ForecastPolygon";
 import "./RealTime.css";
 import Icon from "../Components/Icon/Icon";

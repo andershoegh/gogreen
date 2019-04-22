@@ -29,7 +29,8 @@ class Products extends Component {
       .roundNext5Min()
       .add(2, "hours")
       .format("HH:mm"),
-    product: "washer"
+    product: "washer",
+    percentGreen: null
   };
 
   handleDateChange = (date, dateString) => {
@@ -38,10 +39,32 @@ class Products extends Component {
     });
   };
 
+  axiosGetGreenEnergy = () => {
+    axios
+      .get("https://go-greener.herokuapp.com/howGreenInTimePeriod", {
+        params: {
+          startTime: this.state.timeStart,
+          endTime: this.state.timeEnd,
+          date: this.state.date
+        }
+      })
+      .then(res => {
+        this.setState({
+          percentGreen: res.data.percentGreen
+        });
+      })
+      .catch(function(err) {
+        console.log("Now in catch");
+        console.log("Something went wrong  " + err.message);
+      });
+  };
+
   handleTimeChange = (time, timeString, id) => {
     this.setState({
       ["time" + id]: time.format("HH:mm")
     });
+
+    this.axiosGetGreenEnergy();
   };
 
   handleSubmit = e => {
@@ -77,6 +100,52 @@ class Products extends Component {
       product: products[product]
     });
   };
+  getDisabledEndHours = () => {
+    let hours = [];
+    for (let i = 0; i < moment(this.state.timeStart, "HH:mm").hour(); i++) {
+      hours.push(i);
+    }
+    return hours;
+  };
+  getDisabledEndMinutes = selectedHour => {
+    let minutes = [];
+    if (selectedHour === moment(this.state.timeStart, "HH:mm").hour()) {
+      for (
+        let i = 0;
+        i <= moment(this.state.timeStart, "HH:mm").minute();
+        i += 5
+      ) {
+        minutes.push(i);
+      }
+    }
+    return minutes;
+  };
+
+  getDisabledStartHours = () => {
+    let hours = [];
+    for (let i = 24; i > moment(this.state.timeEnd, "HH:mm").hour(); i--) {
+      hours.push(i);
+    }
+    return hours;
+  };
+  getDisabledStartMinutes = selectedHour => {
+    let minutes = [];
+    console.log();
+    if (selectedHour === moment(this.state.timeEnd, "HH:mm").hour()) {
+      for (
+        let i = 60;
+        i >= moment(this.state.timeEnd, "HH:mm").minute();
+        i -= 5
+      ) {
+        minutes.push(i);
+      }
+    }
+    return minutes;
+  };
+
+  componentDidMount() {
+    this.axiosGetGreenEnergy();
+  }
 
   render() {
     const color = this.props.isGreen ? "circleGreen" : "circleRed";
@@ -96,6 +165,7 @@ class Products extends Component {
             <DatePicker
               defaultValue={moment()}
               format="DD / MM - YYYY"
+              // inputReadOnly={false}
               disabledDate={current => {
                 return current > moment();
               }}
@@ -105,25 +175,36 @@ class Products extends Component {
             />
 
             <TimePicker
-              id="timeStart"
+              // inputReadOnly={false}
               defaultValue={moment(this.state.timeStart, "HH:mm")}
               format="HH:mm"
               minuteStep={5}
+              disabledHours={() => this.getDisabledStartHours()}
+              disabledMinutes={selectedHour =>
+                this.getDisabledStartMinutes(selectedHour)
+              }
               onChange={(time, timeString) =>
                 this.handleTimeChange(time, timeString, "Start")
               }
             />
 
             <TimePicker
+              // inputReadOnly={false}
               defaultValue={moment(this.state.timeEnd, "HH:mm")}
               format="HH:mm"
               minuteStep={5}
+              disabledHours={() => this.getDisabledEndHours()}
+              disabledMinutes={selectedHour =>
+                this.getDisabledEndMinutes(selectedHour)
+              }
               onChange={(time, timeString) =>
                 this.handleTimeChange(time, timeString, "End")
               }
             />
             <button>Log</button>
           </form>
+
+          <div className="hexagon">{this.state.percentGreen}</div>
         </div>
       );
     } else {

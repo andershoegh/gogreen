@@ -4,13 +4,12 @@ import { defaults } from "react-chartjs-2";
 import "./CommunityGraph.css";
 defaults.global.legend.display = false;
 
-const IndividualGraph = () => {
-  // This comp contains dummy data - should be replaced by connection with DB
+const CommunityGraph = ({ graphData }) => {
   const data = {
     labels: ["Red", "Green", "Yellow"],
     datasets: [
       {
-        data: [300, 50, 100],
+        data: graphData,
         backgroundColor: [
           "#CFD2CE",
           "#86BC79",
@@ -36,4 +35,4 @@ const IndividualGraph = () => {
   );
 };
 
-export default IndividualGraph;
+export default CommunityGraph;

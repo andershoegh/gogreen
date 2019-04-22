@@ -9,10 +9,15 @@ import WideCardSideText from "../Components/WideCardSideText/WideCardSideText";
 import CarouselWrapper from "../Components/Carousel/Carousel";
 import "./myUsage.css";
 
-const MyUsage = ({ authUser, user }) => {
+const MyUsage = ({ authUser, user, isGreen }) => {
+  const color = isGreen ? "circleGreen" : "circleRed";
+
   if (authUser) {
+    document.body.style.backgroundImage = ``;
+
     return (
       <Container>
+        <div className={`circle ${color}`} />
         <div className="toggle-data">
           <Icon icon={userIcon} />
           <Link to="/community">

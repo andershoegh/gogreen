@@ -28,13 +28,13 @@ export default class Carousel extends Component {
         <p>{this.props.header}</p>
         <Slider {...settings} onSwipe={() => this.props.handleSlide("Hello")}>
           <div id="washingMachine">
-            <img src={vaskemaskine} />
+            <img src={vaskemaskine} alt="washer" />
           </div>
           <div id="oven">
-            <img src={ovn} />
+            <img src={ovn} alt="ovn" />
           </div>
           <div id="vaccuum">
-            <img src={støvsuger} />
+            <img src={støvsuger} alt="vacuum" />
           </div>
         </Slider>
       </div>

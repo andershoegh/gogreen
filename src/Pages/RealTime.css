@@ -1,12 +1,3 @@
-.toggle-data {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.carousel-wrapper {
-    justify-content: center;
-}
-
 .circle {
     position: absolute;
     top: -30vh;
@@ -18,14 +9,20 @@
     overflow: hidden;
 }
 
-.cCircle {
-    height: 90vh !important;
-}
-
 .circleGreen {
     background-image: linear-gradient(169.77deg, #81ECAD -8.05%, #5DB080 106.47%);
 }
 
 .circleRed {
     background-image: linear-gradient(169.77deg, #FF8383 -8.05%, #CF3939 106.47%);
+}
+
+.hexa {
+    background-image: url('../images/Polygon.svg');
+    background-repeat: no-repeat;
+    height: 58px;
+    width: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

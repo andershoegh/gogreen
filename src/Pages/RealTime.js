@@ -1,24 +1,29 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import ForecastChart from "../Components/forecastChart";
-import { Row, Col } from "react-grid-system";
+import { Container } from "react-grid-system";
 import ForecastPolygon from "../Components/ForecastPolygon/ForecastPolygon";
+import "./RealTime.css";
+import Icon from "../Components/Icon/Icon";
+import hexagon from "../images/Polygon.svg";
 
 const RealTime = props => {
+  const color = props.isGreen ? "circleGreen" : "circleRed";
   if (props.authUser) {
+    document.body.style.backgroundImage = ``;
     return (
-      <div>
-        <Row>
-          <Col>
-            <ForecastPolygon polygonText={"84%"} />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <ForecastChart className="forecastChart" />
-          </Col>
-        </Row>
-      </div>
+      <Container>
+        <div className={`circle ${color}`} />
+        <div>
+          <ForecastPolygon polygonText={"84%"} />
+        </div>
+        <div>
+          <ForecastChart className="forecastChart" />
+        </div>
+        <div className="hexa">
+          <span>50%</span>
+        </div>
+      </Container>
     );
   } else {
     return <Redirect to="/signin" />;

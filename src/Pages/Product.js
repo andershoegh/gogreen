@@ -1,10 +1,9 @@
-import React, { useImperativeHandle, Component } from "react";
+import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import Carousel from "../Components/Carousel/Carousel";
 import { Container, Row } from "react-grid-system";
 import { DatePicker, TimePicker } from "antd";
 import moment from "moment";
-import { format } from "path";
 import axios from "axios";
 import "antd/dist/antd.css";
 
@@ -52,7 +51,7 @@ class Products extends Component {
 
     axios
       .post(
-        "https://go-greener.herokuapp.com/users/log",
+        "https://go-greener.herokuapp.com/log",
         { myData: {} },
         {
           params: {
@@ -80,9 +79,12 @@ class Products extends Component {
   };
 
   render() {
+    const color = this.props.isGreen ? "circleGreen" : "circleRed";
     if (this.props.authUser) {
+      document.body.style.backgroundImage = ``;
       return (
         <div>
+          <div className={`circle ${color}`} />
           <Container>
             <Row style={{ justifyContent: "center" }}>
               <Carousel handleSlide={this.handleSlide} />
@@ -120,7 +122,6 @@ class Products extends Component {
                 this.handleTimeChange(time, timeString, "End")
               }
             />
-
             <button>Log</button>
           </form>
         </div>

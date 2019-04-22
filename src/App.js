@@ -16,15 +16,16 @@ class App extends Component {
     this.state = {
       authUser: JSON.parse(localStorage.getItem("authUser")),
       user: null,
-      community: null
+      community: null,
+      isGreen: false
     };
   }
 
   componentDidMount() {
     firebase.auth.onAuthStateChanged(user => {
-    //   axios.get('http://localhost:4000/users/Auth_UID').then(res => {
-    //   this.setState({data: res.data});
-    // });
+      axios.get("https://go-greener.herokuapp.com/isEnergyGreen").then(res => {
+        this.setState({ isGreen: res.data });
+      });
 
       this.setState({ authUser: user, user });
       localStorage.setItem("authUser", JSON.stringify(user));
@@ -70,7 +71,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div className="app-wrapper">
           <Route
             path="/"
             render={props => (
@@ -80,7 +81,12 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={() => <Dashboard authUser={this.state.authUser} />}
+            render={() => (
+              <Dashboard
+                isGreen={this.state.isGreen}
+                authUser={this.state.authUser}
+              />
+            )}
           />
           <Route
             exact
@@ -89,6 +95,7 @@ class App extends Component {
               <Community
                 community={this.state.community}
                 authUser={this.state.authUser}
+                isGreen={this.state.isGreen}
               />
             )}
           />
@@ -96,25 +103,43 @@ class App extends Component {
             exact
             path="/myusage"
             render={() => (
-              <MyUsage user={this.state.user} authUser={this.state.authUser} />
+              <MyUsage
+                user={this.state.user}
+                authUser={this.state.authUser}
+                isGreen={this.state.isGreen}
+              />
             )}
           />
           <Route
             exact
             path="/realtime"
-            render={() => <RealTime authUser={this.state.authUser} />}
+            render={() => (
+              <RealTime
+                authUser={this.state.authUser}
+                isGreen={this.state.isGreen}
+              />
+            )}
           />
           <Route
             exact
             path="/products"
             render={() => (
-              <Products user={this.state.user} authUser={this.state.authUser} />
+              <Products
+                user={this.state.user}
+                authUser={this.state.authUser}
+                isGreen={this.state.isGreen}
+              />
             )}
           />
           <Route
             exact
             path="/signin"
-            render={() => <SignIn authUser={this.state.authUser} />}
+            render={() => (
+              <SignIn
+                authUser={this.state.authUser}
+                isGreen={this.state.isGreen}
+              />
+            )}
           />
         </div>
       </BrowserRouter>

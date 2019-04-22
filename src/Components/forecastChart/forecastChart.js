@@ -2,8 +2,8 @@ import React, { PureComponent } from "react";
 import {
   AreaChart,
   Area,
-  //XAxis,
-  //YAxis,
+  XAxis,
+  YAxis,
   CartesianGrid,
   Tooltip
 } from "recharts";

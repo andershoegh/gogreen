@@ -22,9 +22,6 @@ class Community extends Component {
       whoIsBestNames: [],
       goal: 80 //sets the goal for the achievement bar
     };
-  const color = isGreen ? "circleGreen" : "circleRed";
-    document.body.style.backgroundImage = ``;
-        <div className={`circle cCircle ${color}`} />
   }
 
   componentDidUpdate(oldProps) {
@@ -100,9 +97,13 @@ class Community extends Component {
 
   componentWillReceiveProps() {}
   render() {
+    const color = this.props.isGreen ? "circleGreen" : "circleRed";
+    document.body.style.backgroundImage = ``;
+
     if (this.props.authUser) {
       return (
         <Container>
+          <div className={`circle cCircle ${color}`} />;
           <div className="toggle-data">
             <Link to="/myusage">
               <Icon icon={userIcon} />

@@ -20,9 +20,6 @@ class MyUsage extends Component {
       productPercent: 0
     };
   }
-  const color = isGreen ? "circleGreen" : "circleRed";
-    document.body.style.backgroundImage = ``;
-        <div className={`circle ${color}`} />
 
   chooseProductFirst = product => {
     const products = ["washer", "oven", "vacuum"];
@@ -76,16 +73,19 @@ class MyUsage extends Component {
   };
 
   render() {
+    const color = this.props.isGreen ? "circleGreen" : "circleRed";
+    document.body.style.backgroundImage = ``;
+
     if (this.props.authUser) {
       return (
         <Container>
+          <div className={`circle ${color}`} />;
           <div className="toggle-data">
             <Icon icon={userIcon} />
             <Link to="/community">
               <Icon icon={communityIcon} />
             </Link>
           </div>
-
           <div className="indi-graph">
             <WideCardSideText
               header="Green Electricity consumption"

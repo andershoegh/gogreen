@@ -8,7 +8,7 @@ import RealTime from "./Pages/RealTime";
 import Products from "./Pages/Product";
 import SignIn from "./Pages/SignIn";
 import Navbar from "./Components/NavBar/Navbar";
-//import axios from "axios";
+import axios from "axios";
 
 class App extends Component {
   constructor(props) {

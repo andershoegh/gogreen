@@ -1,6 +1,6 @@
 .toggle-data {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .carousel-wrapper {
@@ -8,29 +8,33 @@
 }
 
 .circle {
-    position: absolute;
-    top: -30vh;
-    left: -50vw;
-    width: 200vw;
-    height: 78vh;
-    box-shadow: 3px 3px 15px -5px black;
-    z-index: -1;
-    overflow: hidden;
+  position: absolute;
+  top: -30vh;
+  left: -50vw;
+  width: 200vw;
+  height: 78vh;
+  box-shadow: 3px 3px 15px -5px black;
+  z-index: -1;
+  overflow: hidden;
 }
 
 .cCircle {
-    height: 90vh !important;
+  height: 90vh !important;
 }
 
 .circleGreen {
-    background-image: linear-gradient(169.77deg, #81ECAD -8.05%, #5DB080 106.47%);
+  background-image: linear-gradient(169.77deg, #81ecad -8.05%, #5db080 106.47%);
 }
 
 .circleRed {
-    background-image: linear-gradient(169.77deg, #FF8383 -8.05%, #CF3939 106.47%);
+  background-image: linear-gradient(169.77deg, #ff8383 -8.05%, #cf3939 106.47%);
 }
 
 .productCircle {
   position: absolute;
-  top: 290px;
+  top: 405px;
+}
+
+.upperContainer {
+  height: 100vh;
 }

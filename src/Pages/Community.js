@@ -8,6 +8,7 @@ import WideCardSideText from "../Components/WideCardSideText/WideCardSideText";
 import { Link } from "react-router-dom";
 import "./myUsage.css";
 import CommunityGraph from "../Components/CommunityGraph/CommunityGraph";
+import CommunityGraphContribution from "../Components/CommunityGraph/CommunityGraphContribution";
 import { Progress } from "antd";
 import "./Community.css";
 import prizeIcon from "../images/prize.svg";
@@ -123,24 +124,26 @@ class Community extends Component {
           <div>
             <WideCardSideText
               graph={
-                <CommunityGraph graphData={this.state.whoIsBestGraphData} />
+                <CommunityGraphContribution
+                  graphData={this.state.whoIsBestGraphData}
+                />
               }
               header="Bidrag til fællesskabet"
               sideText={
                 <ul>
-                  <li>
+                  <li style={{ color: "#283593" }}>
                     {this.state.whoIsBestNames[0] +
                       " " +
                       this.state.whoIsBestGraphData[0] +
                       "%"}
                   </li>
-                  <li>
+                  <li style={{ color: "#FF8A65" }}>
                     {this.state.whoIsBestNames[1] +
                       " " +
                       this.state.whoIsBestGraphData[1] +
                       "%"}
                   </li>
-                  <li>
+                  <li style={{ color: "#263238" }}>
                     {this.state.whoIsBestNames[2] +
                       " " +
                       this.state.whoIsBestGraphData[2] +

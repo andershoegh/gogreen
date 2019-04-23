@@ -12,12 +12,12 @@ const RealTime = props => {
   if (props.authUser) {
     document.body.style.backgroundImage = ``;
     return (
-      <Container>
+      <Container className="containerClass">
         <div className={`circle ${color}`} />
         <div>
           <ForecastPolygon polygonText={"84%"} />
         </div>
-        <div>
+        <div className="forecastChart">
           <ForecastChart className="forecastChart" />
         </div>
         <div className="hexa">

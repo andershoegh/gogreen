@@ -11,9 +11,11 @@ import forecastIcon from "../images/forecastIcon.png";
 import "./Dashboard.css";
 import GreenBgImg from "../images/backgroundGreen.png";
 import RedBgImg from "../images/backgroundRed.png";
+import CommunityGraph from "../Components/CommunityGraph/CommunityGraph";
+import CommunityGraphContribution from "../Components/CommunityGraph/CommunityGraphContribution";
 
 const Dashboard = props => {
-  const gSubHead = "Shit to green energy now";
+  const gSubHead = "Shift to green energy now";
   const rSubHead = "Wait to use energy till it is green";
 
   const bgImg = props.isGreen ? GreenBgImg : RedBgImg;
@@ -31,12 +33,15 @@ const Dashboard = props => {
         </div>
         <div className="navCards">
           <NavLink to="/myusage">
-            <SmallCard header="Mit forbrug" tileContent={<IndividualGraph />} />
+            <SmallCard
+              header="Mit forbrug"
+              tileContent={<IndividualGraph user={props.user} />}
+            />
           </NavLink>
           <NavLink to="/community">
             <SmallCard
               header="Fælles forbrug"
-              tileContent={<IndividualGraph />}
+              tileContent={<CommunityGraph community={props.community} />}
             />
           </NavLink>
         </div>

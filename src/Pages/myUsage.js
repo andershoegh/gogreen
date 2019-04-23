@@ -14,9 +14,9 @@ class MyUsage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      graphData: [],
       greenEnergy: "  ",
       product: "washer",
+      productIndex: 0,
       productPercent: 0
     };
   }
@@ -25,6 +25,7 @@ class MyUsage extends Component {
     const products = ["washer", "oven", "vacuum"];
 
     this.setState({
+      productIndex: product,
       product: products[product]
     });
   };
@@ -36,14 +37,16 @@ class MyUsage extends Component {
       newProps.user.data &&
       newProps.user !== oldProps.user
     ) {
-      this.updateGraph();
+      //this.updateGraph();
+      this.handleSlide(this.state.productIndex);
     }
   }
   componentDidMount() {
-    this.chooseProductFirst(0);
+    this.chooseProductFirst(this.state.productIndex);
 
     if (this.props.user) {
-      this.updateGraph();
+      // this.updateGraph();
+      this.handleSlide(this.state.productIndex);
     }
   }
 
@@ -75,6 +78,12 @@ class MyUsage extends Component {
     });
   };
 
+  setPercentGreenEnergy = greenEnergy => {
+    this.setState({
+      greenEnergy
+    });
+  };
+
   render() {
     const color = this.props.isGreen ? "circleGreen" : "circleRed";
     document.body.style.backgroundImage = ``;
@@ -92,7 +101,12 @@ class MyUsage extends Component {
           <div className="indi-graph">
             <WideCardSideText
               header="Green Electricity consumption"
-              graph={<IndividualGraph graphData={this.state.graphData} />}
+              graph={
+                <IndividualGraph
+                  user={this.props.user}
+                  setPercentGreenEnergy={this.setPercentGreenEnergy}
+                />
+              }
               sideText={
                 this.state.greenEnergy +
                 "% af alt strøm du bruger er grøn energi."

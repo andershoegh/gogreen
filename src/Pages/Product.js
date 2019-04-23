@@ -6,6 +6,7 @@ import { DatePicker, TimePicker } from "antd";
 import moment from "moment";
 import axios from "axios";
 import "antd/dist/antd.css";
+import "./Products.css";
 
 moment.fn.roundNext5Min = function() {
   let intervals = Math.floor(this.minutes() / 5);
@@ -160,17 +161,16 @@ class Products extends Component {
     if (this.props.authUser) {
       document.body.style.backgroundImage = ``;
       return (
-        <div>
+        <Container className="wrapper">
           <div className={`circle ${color}`} />
-          <Container>
-            <Row style={{ justifyContent: "center" }}>
-              <Carousel handleSlide={this.handleSlide} />
-            </Row>
-          </Container>
+          <div className="caro-wrapper">
+            <Carousel handleSlide={this.handleSlide} />
+          </div>
 
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="name">date:</label>
             <DatePicker
+              className="white"
               defaultValue={moment()}
               format="DD / MM - YYYY"
               // inputReadOnly={false}
@@ -213,7 +213,7 @@ class Products extends Component {
           </form>
 
           <div className="hexagon">{this.state.percentGreen}</div>
-        </div>
+        </Container>
       );
     } else {
       return <Redirect to="/signin" />;

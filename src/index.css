@@ -21,3 +21,7 @@ code {
 .app-wrapper {
     overflow: hidden;
 }
+
+#root{
+    overflow: hidden;
+}

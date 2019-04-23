@@ -1,3 +1,12 @@
+.wrapper {
+    height: 100vh;
+}
+
+.caro-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
 .circle {
     position: absolute;
     top: -30vh;

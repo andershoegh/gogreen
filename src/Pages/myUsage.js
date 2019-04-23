@@ -79,7 +79,7 @@ class MyUsage extends Component {
     if (this.props.authUser) {
       return (
         <Container className="upperContainer">
-          <div className={`circle ${color}`} />;
+          <div className={`circle ${color}`} />
           <div className="toggle-data">
             <Icon icon={userIcon} />
             <Link to="/community">

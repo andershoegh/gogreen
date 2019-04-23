@@ -1,18 +1,31 @@
+.achieve-wrapper {
+    width: 100%;
+}
+
 .progressRow {
-  width: 100%;
-  align-items: center !important;
-  justify-content: center !important;
-  margin: 0px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    height: 50px;
 }
 
 .ant-progress-text {
-  color: green !important;
+    color: green !important;
 }
 
 p {
-  color: green;
+    color: green;
+}
+
+.prgbar {
+    flex: 8;
 }
 
 .prizeIcon {
-  color: green;
+    color: green;
+    display: inline-block;
+    flex: 2;
+    height: 100%;
 }

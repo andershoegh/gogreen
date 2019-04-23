@@ -1,10 +1,11 @@
 import React from "react";
+import "./icon.css";
 
 const Icon = props => {
   const { icon } = props;
   return (
     <div>
-      <img src={icon} alt="" />
+      <img className="img-wrapper" src={icon} alt="" />
     </div>
   );
 };

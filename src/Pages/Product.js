@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import Carousel from '../Components/Carousel/Carousel';
-import { Container, Row, Col } from 'react-grid-system';
-import { DatePicker, TimePicker } from 'antd';
-import moment from 'moment';
-import axios from 'axios';
-import 'antd/dist/antd.css';
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import Carousel from "../Components/Carousel/Carousel";
+import { Container, Row, Col } from "react-grid-system";
+import { DatePicker, TimePicker } from "antd";
+import moment from "moment";
+import axios from "axios";
+import "antd/dist/antd.css";
+import "./Products.css";
+
 
 moment.fn.roundNext5Min = function() {
   let intervals = Math.floor(this.minutes() / 5);
@@ -164,8 +166,9 @@ class Products extends Component {
     if (this.props.authUser) {
       document.body.style.backgroundImage = ``;
       return (
-        <div>
+        <Container className="wrapper">
           <div className={`circle ${color}`} />
+
           <Container>
             <Row style={{ justifyContent: 'center' }}>
               <Carousel handleSlide={this.handleSlide} />
@@ -175,6 +178,7 @@ class Products extends Component {
           <form onSubmit={this.handleSubmit}>
             <label htmlFor='name'>date:</label>
             <DatePicker
+              className="white"
               defaultValue={moment()}
               format="DD / MM - YYYY"
               disabledDate={current => {
@@ -214,6 +218,7 @@ class Products extends Component {
             <button>Log</button>
           </form>
 
+
           <Row>
             <Col xs={4}>
               <div className='hexa'>
@@ -236,6 +241,7 @@ class Products extends Component {
             </Col>
           </Row>
         </div>
+
       );
     } else {
       return <Redirect to='/signin' />;

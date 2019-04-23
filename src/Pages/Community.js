@@ -104,7 +104,7 @@ class Community extends Component {
     if (this.props.authUser) {
       return (
         <Container>
-          <div className={`circle cCircle ${color}`} />;
+          <div className={`circle cCircle ${color}`} />
           <div className="toggle-data">
             <Link to="/myusage">
               <Icon icon={userIcon} />
@@ -113,7 +113,7 @@ class Community extends Component {
           </div>
           <div>
             <WideCardSideText
-              header="Grønt el-forbrug: <Fælleskab>"
+              header="Grønt el-forbrug:"
               graph={<CommunityGraph graphData={this.state.totalGraphData} />}
               sideText={
                 this.state.greenEnergy +
@@ -153,23 +153,26 @@ class Community extends Component {
               }
             />
           </div>
-          <p>Ugens fællesmål: {this.state.goal}% samlet grøn strøm</p>
-          <Row className="progressRow">
-            <Col xs={2}>
-              <Icon class="prizeIcon" icon={prizeIcon} />
-            </Col>
-            <Col xs={8}>
-              <Progress
-                percent={(
-                  (this.state.greenEnergy / this.state.goal) *
-                  100
-                ).toFixed(0)}
-                strokeWidth={12}
-                status="active"
-                strokeColor="#6ecd96"
-              />
-            </Col>
-          </Row>
+          <div className="achieve-wrapper">
+            <p>Ugens fællesmål: {this.state.goal}% samlet grøn strøm</p>
+            <div className="progressRow">
+              <div className="prizeIcon">
+                <img className="img-wrapper" src={prizeIcon} alt="" />
+              </div>
+              <div className="prgbar">
+                <Progress
+                  percent={(
+                    (this.state.greenEnergy / this.state.goal) *
+                    100
+                  ).toFixed(0)}
+                  strokeWidth={12}
+                  status="active"
+                  strokeColor="#6ecd96"
+                  showInfo={false}
+                />
+              </div>
+            </div>
+          </div>
         </Container>
       );
     } else {

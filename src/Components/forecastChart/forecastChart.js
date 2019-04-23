@@ -34,7 +34,6 @@ export default class ForecastChart extends PureComponent {
   render() {
     if (this.state.data.length < 1) {
       axios.get("https://go-greener.herokuapp.com/forecast").then(res => {
-        console.log(res.data);
         this.setState({
           data: res.data
         });
@@ -54,8 +53,8 @@ export default class ForecastChart extends PureComponent {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="Minutes5DK" hide="true" />
-        <YAxis dataKey="CO2Emission" hide="true" />
+        <XAxis dataKey="Minutes5DK" hide={true} />
+        <YAxis dataKey="CO2Emission" hide={true} />
 
         <Tooltip />
 

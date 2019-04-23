@@ -161,10 +161,11 @@ class Community extends Component {
               </div>
               <div className="prgbar">
                 <Progress
-                  percent={(
-                    (this.state.greenEnergy / this.state.goal) *
-                    100
-                  ).toFixed(0)}
+                  percent={parseInt(
+                    ((this.state.greenEnergy / this.state.goal) * 100).toFixed(
+                      0
+                    )
+                  )}
                   strokeWidth={12}
                   status="active"
                   strokeColor="#6ecd96"

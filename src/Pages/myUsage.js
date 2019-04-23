@@ -53,10 +53,13 @@ class MyUsage extends Component {
     const greenEnergy = (user.totalGreenEnergy / user.totalEnergy) * 100;
     const energy = 100 - greenEnergy;
 
-    this.setState({
-      graphData: [greenEnergy.toFixed(0), energy.toFixed(0)],
-      greenEnergy: greenEnergy.toFixed(0)
-    });
+    this.setState(
+      {
+        graphData: [greenEnergy.toFixed(0), energy.toFixed(0)],
+        greenEnergy: greenEnergy.toFixed(0)
+      },
+      () => this.handleSlide(0)
+    );
   };
   handleSlide = product => {
     const products = ["washer", "oven", "dryer"];
@@ -104,7 +107,7 @@ class MyUsage extends Component {
             >
               <Progress
                 type="circle"
-                percent={this.state.productPercent}
+                percent={parseInt(this.state.productPercent)}
                 width={127}
                 className="productCircle"
                 showInfo={false}

@@ -34,9 +34,12 @@ class Products extends Component {
   };
 
   handleDateChange = (date, dateString) => {
-    this.setState({
-      date: date.format("YYYY-MM-DD")
-    });
+    this.setState(
+      {
+        date: date.format("YYYY-MM-DD")
+      },
+      this.axiosGetGreenEnergy
+    );
   };
 
   axiosGetGreenEnergy = () => {
@@ -60,11 +63,12 @@ class Products extends Component {
   };
 
   handleTimeChange = (time, timeString, id) => {
-    this.setState({
-      ["time" + id]: time.format("HH:mm")
-    });
-
-    this.axiosGetGreenEnergy();
+    this.setState(
+      {
+        ["time" + id]: time.format("HH:mm")
+      },
+      this.axiosGetGreenEnergy
+    );
   };
 
   handleSubmit = e => {
@@ -173,7 +177,6 @@ class Products extends Component {
             <DatePicker
               defaultValue={moment()}
               format="DD / MM - YYYY"
-              // inputReadOnly={false}
               disabledDate={current => {
                 return current > moment();
               }}
@@ -181,9 +184,7 @@ class Products extends Component {
                 this.handleDateChange(date, dateString)
               }
             />
-
             <TimePicker
-              // inputReadOnly={false}
               defaultValue={moment(this.state.timeStart, "HH:mm")}
               format="HH:mm"
               minuteStep={5}
@@ -194,10 +195,10 @@ class Products extends Component {
               onChange={(time, timeString) =>
                 this.handleTimeChange(time, timeString, "Start")
               }
+              inputReadOnly
             />
 
             <TimePicker
-              // inputReadOnly={false}
               defaultValue={moment(this.state.timeEnd, "HH:mm")}
               format="HH:mm"
               minuteStep={5}
@@ -208,6 +209,7 @@ class Products extends Component {
               onChange={(time, timeString) =>
                 this.handleTimeChange(time, timeString, "End")
               }
+              inputReadOnly
             />
             <button>Log</button>
           </form>

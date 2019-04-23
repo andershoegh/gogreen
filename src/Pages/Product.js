@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import Carousel from "../Components/Carousel/Carousel";
-import { Container, Row } from "react-grid-system";
-import { DatePicker, TimePicker } from "antd";
-import moment from "moment";
-import axios from "axios";
-import "antd/dist/antd.css";
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import Carousel from '../Components/Carousel/Carousel';
+import { Container, Row, Col } from 'react-grid-system';
+import { DatePicker, TimePicker } from 'antd';
+import moment from 'moment';
+import axios from 'axios';
+import 'antd/dist/antd.css';
 
 moment.fn.roundNext5Min = function() {
   let intervals = Math.floor(this.minutes() / 5);
   if (this.minutes() % 5 !== 0) intervals++;
   if (intervals === 12) {
-    this.add(1, "hours");
+    this.add(1, 'hours');
     intervals = 0;
   }
   this.minutes(intervals * 5);
@@ -21,27 +21,27 @@ moment.fn.roundNext5Min = function() {
 
 class Products extends Component {
   state = {
-    date: moment().format("YYYY-MM-DD"),
+    date: moment().format('YYYY-MM-DD'),
     timeStart: moment()
       .roundNext5Min()
-      .format("HH:mm"),
+      .format('HH:mm'),
     timeEnd: moment()
       .roundNext5Min()
-      .add(2, "hours")
-      .format("HH:mm"),
-    product: "washer",
+      .add(2, 'hours')
+      .format('HH:mm'),
+    product: 'washer',
     percentGreen: null
   };
 
   handleDateChange = (date, dateString) => {
     this.setState({
-      date: date.format("YYYY-MM-DD")
+      date: date.format('YYYY-MM-DD')
     });
   };
 
   axiosGetGreenEnergy = () => {
     axios
-      .get("https://go-greener.herokuapp.com/howGreenInTimePeriod", {
+      .get('https://go-greener.herokuapp.com/howGreenInTimePeriod', {
         params: {
           startTime: this.state.timeStart,
           endTime: this.state.timeEnd,
@@ -54,14 +54,14 @@ class Products extends Component {
         });
       })
       .catch(function(err) {
-        console.log("Now in catch");
-        console.log("Something went wrong  " + err.message);
+        console.log('Now in catch');
+        console.log('Something went wrong  ' + err.message);
       });
   };
 
   handleTimeChange = (time, timeString, id) => {
     this.setState({
-      ["time" + id]: time.format("HH:mm")
+      ['time' + id]: time.format('HH:mm')
     });
 
     this.axiosGetGreenEnergy();
@@ -72,17 +72,17 @@ class Products extends Component {
 
     if (this.state.timeStart >= this.state.timeEnd) {
       alert(
-        "Starttidspunktet du har valgt, er senere end sluttidspunktet.\nVenligst ændre det og prøv igen."
+        'Starttidspunktet du har valgt, er senere end sluttidspunktet.\nVenligst ændre det og prøv igen.'
       );
       return null;
     }
 
-    const formattedTimeStart = this.state.date + " " + this.state.timeStart;
-    const formattedTimeEnd = this.state.date + " " + this.state.timeEnd;
+    const formattedTimeStart = this.state.date + ' ' + this.state.timeStart;
+    const formattedTimeEnd = this.state.date + ' ' + this.state.timeEnd;
 
     axios
       .post(
-        "https://go-greener.herokuapp.com/log",
+        'https://go-greener.herokuapp.com/log',
         { myData: {} },
         {
           params: {
@@ -97,12 +97,12 @@ class Products extends Component {
         console.log(res.data);
       })
       .catch(function(err) {
-        console.log("Something went wrong  " + err.message);
+        console.log('Something went wrong  ' + err.message);
       });
   };
 
   handleSlide = product => {
-    const products = ["washer", "oven", "vacuum"];
+    const products = ['washer', 'oven', 'vacuum'];
 
     this.setState({
       product: products[product]
@@ -110,17 +110,17 @@ class Products extends Component {
   };
   getDisabledEndHours = () => {
     let hours = [];
-    for (let i = 0; i < moment(this.state.timeStart, "HH:mm").hour(); i++) {
+    for (let i = 0; i < moment(this.state.timeStart, 'HH:mm').hour(); i++) {
       hours.push(i);
     }
     return hours;
   };
   getDisabledEndMinutes = selectedHour => {
     let minutes = [];
-    if (selectedHour === moment(this.state.timeStart, "HH:mm").hour()) {
+    if (selectedHour === moment(this.state.timeStart, 'HH:mm').hour()) {
       for (
         let i = 0;
-        i <= moment(this.state.timeStart, "HH:mm").minute();
+        i <= moment(this.state.timeStart, 'HH:mm').minute();
         i += 5
       ) {
         minutes.push(i);
@@ -131,7 +131,7 @@ class Products extends Component {
 
   getDisabledStartHours = () => {
     let hours = [];
-    for (let i = 24; i > moment(this.state.timeEnd, "HH:mm").hour(); i--) {
+    for (let i = 24; i > moment(this.state.timeEnd, 'HH:mm').hour(); i--) {
       hours.push(i);
     }
     return hours;
@@ -139,10 +139,10 @@ class Products extends Component {
   getDisabledStartMinutes = selectedHour => {
     let minutes = [];
     console.log();
-    if (selectedHour === moment(this.state.timeEnd, "HH:mm").hour()) {
+    if (selectedHour === moment(this.state.timeEnd, 'HH:mm').hour()) {
       for (
         let i = 60;
-        i >= moment(this.state.timeEnd, "HH:mm").minute();
+        i >= moment(this.state.timeEnd, 'HH:mm').minute();
         i -= 5
       ) {
         minutes.push(i);
@@ -156,23 +156,23 @@ class Products extends Component {
   }
 
   render() {
-    const color = this.props.isGreen ? "circleGreen" : "circleRed";
+    const color = this.props.isGreen ? 'circleGreen' : 'circleRed';
     if (this.props.authUser) {
       document.body.style.backgroundImage = ``;
       return (
         <div>
           <div className={`circle ${color}`} />
           <Container>
-            <Row style={{ justifyContent: "center" }}>
+            <Row style={{ justifyContent: 'center' }}>
               <Carousel handleSlide={this.handleSlide} />
             </Row>
           </Container>
 
           <form onSubmit={this.handleSubmit}>
-            <label htmlFor="name">date:</label>
+            <label htmlFor='name'>date:</label>
             <DatePicker
               defaultValue={moment()}
-              format="DD / MM - YYYY"
+              format='DD / MM - YYYY'
               // inputReadOnly={false}
               disabledDate={current => {
                 return current > moment();
@@ -184,39 +184,59 @@ class Products extends Component {
 
             <TimePicker
               // inputReadOnly={false}
-              defaultValue={moment(this.state.timeStart, "HH:mm")}
-              format="HH:mm"
+              defaultValue={moment(this.state.timeStart, 'HH:mm')}
+              format='HH:mm'
               minuteStep={5}
               disabledHours={() => this.getDisabledStartHours()}
               disabledMinutes={selectedHour =>
                 this.getDisabledStartMinutes(selectedHour)
               }
               onChange={(time, timeString) =>
-                this.handleTimeChange(time, timeString, "Start")
+                this.handleTimeChange(time, timeString, 'Start')
               }
             />
 
             <TimePicker
               // inputReadOnly={false}
-              defaultValue={moment(this.state.timeEnd, "HH:mm")}
-              format="HH:mm"
+              defaultValue={moment(this.state.timeEnd, 'HH:mm')}
+              format='HH:mm'
               minuteStep={5}
               disabledHours={() => this.getDisabledEndHours()}
               disabledMinutes={selectedHour =>
                 this.getDisabledEndMinutes(selectedHour)
               }
               onChange={(time, timeString) =>
-                this.handleTimeChange(time, timeString, "End")
+                this.handleTimeChange(time, timeString, 'End')
               }
             />
             <button>Log</button>
           </form>
 
-          <div className="hexagon">{this.state.percentGreen}</div>
+          <Row>
+            <Col xs={4}>
+              <div className='hexa'>
+                <span>{this.state.percentGreen}</span>
+              </div>
+            </Col>
+            <Col xs={8} className='hexaText'>
+              <p>Procentvis grøn strøm der bruges i dette tidsrum</p>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col xs={4}>
+              <div className='hexa'>
+                <span>{this.state.percentGreen}</span>
+              </div>
+            </Col>
+            <Col xs={8} className='hexaText'>
+              <p>Dit gennemsnitlige grønne el forbrug for støvsuger</p>
+            </Col>
+          </Row>
         </div>
       );
     } else {
-      return <Redirect to="/signin" />;
+      return <Redirect to='/signin' />;
     }
   }
 }

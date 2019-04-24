@@ -35,13 +35,18 @@ const Dashboard = props => {
           <NavLink to="/myusage">
             <SmallCard
               header="Mit forbrug"
-              tileContent={<IndividualGraph user={props.user} />}
+              tileContent={<IndividualGraph user={props.user} small={true} />}
             />
           </NavLink>
           <NavLink to="/community">
             <SmallCard
               header="Fælles forbrug"
-              tileContent={<CommunityGraph community={props.community} />}
+              tileContent={
+                <CommunityGraphContribution
+                  community={props.community}
+                  small={true}
+                />
+              }
             />
           </NavLink>
         </div>

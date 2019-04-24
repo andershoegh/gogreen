@@ -98,11 +98,22 @@ class CommunityGraphContribution extends Component {
       ]
     };
 
-    return (
-      <div className="graph">
-        <Doughnut data={data} options={{ maintainAspectRatio: false }} />
-      </div>
-    );
+    if (this.props.small !== undefined) {
+      return (
+        <div className="graph">
+          <Doughnut
+            data={data}
+            options={{ maintainAspectRatio: this.props.small }}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div className="graph">
+          <Doughnut data={data} options={{ maintainAspectRatio: false }} />
+        </div>
+      );
+    }
   }
 }
 

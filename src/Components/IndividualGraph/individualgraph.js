@@ -9,7 +9,8 @@ class IndividualGraph extends Component {
     super(props);
     this.state = {
       graphData: [],
-      greenEnergy: "  "
+      greenEnergy: "  ",
+      small: false
     };
   }
 
@@ -25,6 +26,7 @@ class IndividualGraph extends Component {
     }
   }
   componentDidMount() {
+    this.setState({ small: this.props.small });
     if (this.props.user) {
       this.updateGraph();
     }
@@ -46,7 +48,7 @@ class IndividualGraph extends Component {
 
   render() {
     const data = {
-      labels: ["Grøn", "Rød"],
+      labels: ["Grøn Energi", "Rød Energi"],
       datasets: [
         {
           data: this.state.graphData,
@@ -55,11 +57,22 @@ class IndividualGraph extends Component {
         }
       ]
     };
-    return (
-      <div className="indi-graph">
-        <Doughnut data={data} options={{ maintainAspectRatio: true }} />
-      </div>
-    );
+    if (this.props.small !== undefined) {
+      return (
+        <div className="indi-graph">
+          <Doughnut
+            data={data}
+            options={{ maintainAspectRatio: this.props.small }}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div className="indi-graph">
+          <Doughnut data={data} options={{ maintainAspectRatio: false }} />
+        </div>
+      );
+    }
   }
 }
 

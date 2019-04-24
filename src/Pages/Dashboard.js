@@ -11,7 +11,6 @@ import forecastIcon from "../images/forecastIcon.png";
 import "./Dashboard.css";
 import GreenBgImg from "../images/backgroundGreen.png";
 import RedBgImg from "../images/backgroundRed.png";
-import CommunityGraph from "../Components/CommunityGraph/CommunityGraph";
 import CommunityGraphContribution from "../Components/CommunityGraph/CommunityGraphContribution";
 
 const Dashboard = props => {

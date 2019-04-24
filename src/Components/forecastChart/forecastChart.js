@@ -27,9 +27,24 @@ const off = gradientOffset();
 
 export default class ForecastChart extends PureComponent {
   static jsfiddleUrl = "https://jsfiddle.net/alidingling/64v6ocdx/";
-  state = {
-    data: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = { width: 0, height: 0, data: [] };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener("resize", this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  }
 
   render() {
     if (this.state.data.length < 1) {
@@ -42,7 +57,7 @@ export default class ForecastChart extends PureComponent {
 
     return (
       <AreaChart
-        width={375}
+        width={this.state.width}
         height={256}
         data={this.state.data}
         margin={{

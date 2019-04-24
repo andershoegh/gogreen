@@ -83,6 +83,8 @@ class App extends Component {
             path="/"
             render={() => (
               <Dashboard
+                user={this.state.user}
+                community={this.state.community}
                 isGreen={this.state.isGreen}
                 authUser={this.state.authUser}
               />

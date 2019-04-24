@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import { Container, Row, Col } from "react-grid-system";
+import { Container } from "react-grid-system";
 import userIcon from "../images/icons8_User_100px_1.png";
 import communityIcon from "../images/icons8_People_50px.png";
 import Icon from "../Components/Icon/Icon";
@@ -17,86 +17,25 @@ class Community extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      totalGraphData: [],
-      greenEnergy: "",
       whoIsBestGraphData: [],
-      whoIsBestNames: [],
+      graphNames: [],
       goal: 80 //sets the goal for the achievement bar
     };
   }
 
-  componentDidUpdate(oldProps) {
-    const newProps = this.props;
-    if (
-      oldProps !== newProps &&
-      newProps.community &&
-      newProps.community !== oldProps.community
-    ) {
-      if (this.props.community) {
-        this.updateGraph();
-      }
-    }
-  }
-  componentDidMount() {
-    if (this.props.community) {
-      this.updateGraph();
-    }
-  }
-  updateGraph = () => {
-    this.totalGraph();
-    this.whoIsBestGraph();
-  };
-  totalGraph = () => {
-    let greenEnergy = 0;
-    let totalEnergy = 0;
-    this.props.community.forEach(user => {
-      greenEnergy += user.data.totalGreenEnergy;
-      totalEnergy += user.data.totalEnergy;
-    });
-    const percentGreenEnergy = ((greenEnergy / totalEnergy) * 100).toFixed(0);
-    const percentTotalEnergy = 100 - percentGreenEnergy;
+  setGraphDataAndNames = (graphData, graphNames) => {
     this.setState({
-      totalGraphData: [percentGreenEnergy, percentTotalEnergy],
+      whoIsBestGraphData: graphData,
+      graphNames
+    });
+  };
+
+  setPercentGreenEnergy = percentGreenEnergy => {
+    this.setState({
       greenEnergy: percentGreenEnergy
     });
   };
 
-  whoIsBestGraph = () => {
-    let whoIsBestGraphDataRaw = [];
-    let whoIsBestNames = [];
-    let whoIsBestGraphData = [];
-
-    this.props.community.forEach(user => {
-      const energyPercent = (
-        (user.data.totalGreenEnergy / user.data.totalEnergy) *
-        100
-      ).toFixed(0);
-      let tempData = [...whoIsBestGraphDataRaw, energyPercent];
-      let tempNames = [...whoIsBestNames, user.data.firstName];
-
-      whoIsBestGraphDataRaw = tempData;
-      whoIsBestNames = tempNames;
-    });
-
-    let sum = 0;
-    whoIsBestGraphDataRaw.forEach(value => {
-      sum += parseInt(value);
-    });
-
-    if (sum) {
-      whoIsBestGraphDataRaw.forEach(value => {
-        const dataPercent = ((value / sum) * 100).toFixed(0);
-        let tempData = [...whoIsBestGraphData, dataPercent];
-        whoIsBestGraphData = tempData;
-      });
-    }
-    this.setState({
-      whoIsBestNames,
-      whoIsBestGraphData
-    });
-  };
-
-  componentWillReceiveProps() {}
   render() {
     const color = this.props.isGreen ? "circleGreen" : "circleRed";
     document.body.style.backgroundImage = ``;
@@ -114,7 +53,12 @@ class Community extends Component {
           <div>
             <WideCardSideText
               header="Grønt el-forbrug:"
-              graph={<CommunityGraph graphData={this.state.totalGraphData} />}
+              graph={
+                <CommunityGraph
+                  community={this.props.community}
+                  setPercentGreenEnergy={this.setPercentGreenEnergy}
+                />
+              }
               sideText={
                 this.state.greenEnergy +
                 "% af alt strøm I bruger er grøn energi."
@@ -125,26 +69,27 @@ class Community extends Component {
             <WideCardSideText
               graph={
                 <CommunityGraphContribution
-                  graphData={this.state.whoIsBestGraphData}
+                  community={this.props.community}
+                  setGraphDataAndNames={this.setGraphDataAndNames}
                 />
               }
               header="Bidrag til fællesskabet"
               sideText={
                 <ul>
                   <li style={{ color: "#283593" }}>
-                    {this.state.whoIsBestNames[0] +
+                    {this.state.graphNames[0] +
                       " " +
                       this.state.whoIsBestGraphData[0] +
                       "%"}
                   </li>
                   <li style={{ color: "#FF8A65" }}>
-                    {this.state.whoIsBestNames[1] +
+                    {this.state.graphNames[1] +
                       " " +
                       this.state.whoIsBestGraphData[1] +
                       "%"}
                   </li>
                   <li style={{ color: "#263238" }}>
-                    {this.state.whoIsBestNames[2] +
+                    {this.state.graphNames[2] +
                       " " +
                       this.state.whoIsBestGraphData[2] +
                       "%"}

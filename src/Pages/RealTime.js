@@ -5,7 +5,6 @@ import ForecastChart from "../Components/forecastChart/forecastChart";
 import ForecastPolygon from "../Components/ForecastPolygon/ForecastPolygon";
 import "./RealTime.css";
 import Icon from "../Components/Icon/Icon";
-import hexagon from "../images/Polygon.svg";
 
 const RealTime = props => {
   const color = props.isGreen ? "circleGreen" : "circleRed";
@@ -14,14 +13,16 @@ const RealTime = props => {
     return (
       <Container className="containerClass">
         <div className={`circle ${color}`} />
-        <div>
-          <ForecastPolygon polygonText={"84%"} />
+        {/* <div className="hexagon-outer">
+          <div className="hexagon">
+            <ForecastPolygon polygonText={"84%"} />
+          </div>
+        </div> */}
+        <div className="hexaWhite">
+          <span>50%</span>
         </div>
         <div className="forecastChart">
           <ForecastChart className="forecastChart" />
-        </div>
-        <div className="hexa">
-          <span>50%</span>
         </div>
       </Container>
     );

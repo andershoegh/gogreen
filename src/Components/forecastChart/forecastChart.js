@@ -9,22 +9,6 @@ import {
 } from "recharts";
 import axios from "axios";
 
-const gradientOffset = () => {
-  const dataMax = 1000;
-  const dataMin = -1000;
-
-  if (dataMax <= 0) {
-    return 0;
-  }
-  if (dataMin >= 0) {
-    return 1;
-  }
-
-  return dataMax / (dataMax - dataMin);
-};
-
-const off = gradientOffset();
-
 export default class ForecastChart extends PureComponent {
   static jsfiddleUrl = "https://jsfiddle.net/alidingling/64v6ocdx/";
   constructor(props) {
@@ -54,6 +38,21 @@ export default class ForecastChart extends PureComponent {
         });
       });
     }
+    const gradientOffset = () => {
+      const dataMax = Math.max(...this.state.data.map(i => i.CO2Emission));
+      const dataMin = Math.min(...this.state.data.map(i => i.CO2Emission));
+
+      if (dataMax <= 0) {
+        return 0;
+      }
+      if (dataMin >= 0) {
+        return 1;
+      }
+
+      return dataMax / (dataMax - dataMin);
+    };
+
+    const off = gradientOffset();
 
     return (
       <AreaChart
@@ -64,7 +63,7 @@ export default class ForecastChart extends PureComponent {
           top: 10,
           right: 30,
           left: 0,
-          bottom: 0
+          bottom: 50
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
@@ -75,8 +74,8 @@ export default class ForecastChart extends PureComponent {
 
         <defs>
           <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-            <stop offset={off} stopColor="red" stopOpacity={1} />
             <stop offset={off} stopColor="green" stopOpacity={1} />
+            <stop offset={off} stopColor="red" stopOpacity={1} />
           </linearGradient>
         </defs>
         <Area

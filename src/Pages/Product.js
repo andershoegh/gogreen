@@ -216,10 +216,12 @@ class Products extends Component {
   };
 
   componentDidMount() {
-    this.axiosGetGreenEnergy();
-
     if (this.state.timeStart >= moment().format("HH:mm")) {
-      this.setState({ timeEnd: moment("23:55", "HH:mm").format("HH:mm") });
+      this.setState({ timeEnd: moment("23:55", "HH:mm").format("HH:mm") }, () =>
+        this.axiosGetGreenEnergy()
+      );
+    } else {
+      this.axiosGetGreenEnergy();
     }
     if (this.props.user) {
       this.handleSlide(0);

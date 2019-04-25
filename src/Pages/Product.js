@@ -54,7 +54,7 @@ class Products extends Component {
       })
       .then(res => {
         this.setState({
-          percentGreen: res.data.percentGreen
+          percentGreen: Math.round(res.data.percentGreen)
         });
       })
       .catch(function(err) {
@@ -107,7 +107,13 @@ class Products extends Component {
   };
 
   handleSlide = product => {
-    const products = ["washer", "oven", "vacuum"];
+    const products = [
+      "washingMachine",
+      "dryer",
+      "vacuum",
+      "entertainment",
+      "dishwasher"
+    ];
 
     this.setState({
       product: products[product]
@@ -168,76 +174,96 @@ class Products extends Component {
         <Container className="wrapper">
           <div className={`circle ${color}`} />
 
-          <Container>
-            <Row style={{ justifyContent: "center" }}>
-              <Carousel handleSlide={this.handleSlide} />
-            </Row>
-          </Container>
+          <div className="caro-wrapper">
+            <Carousel handleSlide={this.handleSlide} />
+          </div>
 
-          <form onSubmit={this.handleSubmit}>
-            <label htmlFor="name">date:</label>
-            <DatePicker
-              className="white"
-              defaultValue={moment()}
-              format="DD / MM - YYYY"
-              disabledDate={current => {
-                return current > moment();
-              }}
-              onChange={(date, dateString) =>
-                this.handleDateChange(date, dateString)
-              }
-            />
-            <TimePicker
-              defaultValue={moment(this.state.timeStart, "HH:mm")}
-              format="HH:mm"
-              minuteStep={5}
-              disabledHours={() => this.getDisabledStartHours()}
-              disabledMinutes={selectedHour =>
-                this.getDisabledStartMinutes(selectedHour)
-              }
-              onChange={(time, timeString) =>
-                this.handleTimeChange(time, timeString, "Start")
-              }
-              inputReadOnly
-            />
-
-            <TimePicker
-              defaultValue={moment(this.state.timeEnd, "HH:mm")}
-              format="HH:mm"
-              minuteStep={5}
-              disabledHours={() => this.getDisabledEndHours()}
-              disabledMinutes={selectedHour =>
-                this.getDisabledEndMinutes(selectedHour)
-              }
-              onChange={(time, timeString) =>
-                this.handleTimeChange(time, timeString, "End")
-              }
-              inputReadOnly
-            />
-            <button>Log</button>
-          </form>
-
-          <Row>
-            <Col xs={4}>
-              <div className="hexa">
-                <span>{this.state.percentGreen}</span>
+          <div className="formWrapper">
+            <form onSubmit={this.handleSubmit}>
+              <div className="datepicker-wrapper">
+                <span className="formSpan">Dato:</span>
+                <DatePicker
+                  defaultValue={moment()}
+                  format="DD / MM - YYYY"
+                  disabledDate={current => {
+                    return current > moment();
+                  }}
+                  onChange={(date, dateString) =>
+                    this.handleDateChange(date, dateString)
+                  }
+                />
               </div>
-            </Col>
-            <Col xs={8} className="hexaText">
-              <p>Procentvis grøn strøm der bruges i dette tidsrum</p>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col xs={4}>
-              <div className="hexa">
-                <span>{this.state.percentGreen}</span>
+              <div className="timepicker-wrapper">
+                <div className="timepicker-item">
+                  <span className="formSpan">Fra:</span>
+                  <TimePicker
+                    defaultValue={moment(this.state.timeStart, "HH:mm")}
+                    format="HH:mm"
+                    minuteStep={5}
+                    disabledHours={() => this.getDisabledStartHours()}
+                    disabledMinutes={selectedHour =>
+                      this.getDisabledStartMinutes(selectedHour)
+                    }
+                    onChange={(time, timeString) =>
+                      this.handleTimeChange(time, timeString, "Start")
+                    }
+                    inputReadOnly
+                  />
+                </div>
+                <div className="timepicker-item">
+                  <span className="formSpan">Til:</span>
+                  <TimePicker
+                    defaultValue={moment(this.state.timeEnd, "HH:mm")}
+                    format="HH:mm"
+                    minuteStep={5}
+                    disabledHours={() => this.getDisabledEndHours()}
+                    disabledMinutes={selectedHour =>
+                      this.getDisabledEndMinutes(selectedHour)
+                    }
+                    onChange={(time, timeString) =>
+                      this.handleTimeChange(time, timeString, "End")
+                    }
+                    inputReadOnly
+                  />
+                </div>
               </div>
-            </Col>
-            <Col xs={8} className="hexaText">
-              <p>Dit gennemsnitlige grønne el forbrug for støvsuger</p>
-            </Col>
-          </Row>
+
+              <div className="productInfo">
+                <div className="infoRow">
+                  <div className="hexa">
+                    <p>{this.state.percentGreen}%</p>
+                  </div>
+                  <div className="hexaText">
+                    <p>Procentvis grøn strøm der bruges i dette tidsrum</p>
+                  </div>
+                </div>
+
+                <div className="infoRow">
+                  <div className="hexa">
+                    <p>
+                      {(
+                        (this.props.user.data.products[this.state.product]
+                          .greenEnergy /
+                          this.props.user.data.products[this.state.product]
+                            .totalEnergy) *
+                        100
+                      ).toFixed(0)}
+                      %
+                    </p>
+                  </div>
+                  <div className="hexaText">
+                    <p>Dit gennemsnitlige grønne el forbrug for støvsuger</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bt-wrapper">
+                <button className="btn-large pink lighten-1 z-depth-0">
+                  Log
+                </button>
+              </div>
+            </form>
+          </div>
         </Container>
       );
     } else {

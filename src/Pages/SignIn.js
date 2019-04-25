@@ -5,7 +5,7 @@ import "./SignIn.css";
 import { Container } from "react-grid-system";
 import H1 from "../Components/H1/H1";
 import GreenBgImg from "../images/backgroundGreen.png";
-//import RedBgImg from "../images/backgroundRed.png";
+import RedBgImg from "../images/backgroundRed.png";
 
 class SignIn extends Component {
   state = {
@@ -30,9 +30,9 @@ class SignIn extends Component {
   };
 
   render() {
-    //const bgImg = props.isGreen ? GreenBgImg : RedBgImg;
+    const bgImg = this.props.isGreen ? GreenBgImg : RedBgImg;
     if (this.props.authUser) return <Redirect to="/" />;
-    document.body.style.backgroundImage = `url(${GreenBgImg})`;
+    document.body.style.backgroundImage = `url(${bgImg})`;
     return (
       <Container className="formWrapper">
         <form className="transparent" onSubmit={this.handleSubmit}>

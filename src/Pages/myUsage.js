@@ -16,13 +16,19 @@ class MyUsage extends Component {
     this.state = {
       graphData: [],
       greenEnergy: "  ",
-      product: "washer",
+      product: "",
       productPercent: 0
     };
   }
 
   chooseProductFirst = product => {
-    const products = ["washer", "oven", "vacuum"];
+    const products = [
+      "washingMachine",
+      "dryer",
+      "vacuum",
+      "entertainment",
+      "dishwasher"
+    ];
 
     this.setState({
       product: products[product]
@@ -62,7 +68,13 @@ class MyUsage extends Component {
     );
   };
   handleSlide = product => {
-    const products = ["washer", "oven", "dryer"];
+    const products = [
+      "washingMachine",
+      "dryer",
+      "vacuum",
+      "entertainment",
+      "dishwasher"
+    ];
     const greenEnergy = this.props.user.data.products[products[product]][
       "greenEnergy"
     ];

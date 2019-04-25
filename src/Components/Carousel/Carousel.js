@@ -3,9 +3,11 @@ import Slider from "react-slick";
 import "./Carousel.css";
 import "../../../node_modules/slick-carousel/slick/slick.css";
 import "../../../node_modules/slick-carousel/slick/slick-theme.css";
-import vaskemaskine from "../../images/Vaskemaskine-firkant.svg";
-import ovn from "../../images/Ovn-firkant.svg";
-import støvsuger from "../../images/støvsuger-firkant.svg";
+import vaskemaskine from "../../images/washing-machine.svg";
+import støvsuger from "../../images/vacuum-cleaner.svg";
+import tørretumbler from "../../images/dryer.svg";
+import underholdning from "../../images/television.svg";
+import opvasker from "../../images/dishwasher.svg";
 
 export default class Carousel extends Component {
   render() {
@@ -13,9 +15,10 @@ export default class Carousel extends Component {
       className: "center",
       centerMode: true,
       infinite: true,
-      centerPadding: "80px",
+      centerPadding: "90px",
       slidesToShow: 1,
       speed: 500,
+      arrows: false,
       prevArrow: false,
       nextArrow: false,
       dots: false,
@@ -24,17 +27,27 @@ export default class Carousel extends Component {
       }
     };
     return (
-      <div>
-        <p>{this.props.header}</p>
+      <div className="test">
         <Slider {...settings}>
-          <div id="washingMachine">
+          <div className="cardSlider" id="washingMachine">
+            <p>Vaskemaskine</p>
             <img src={vaskemaskine} alt={"washer"} />
           </div>
-          <div id="oven">
-            <img src={ovn} alt={"oven"} />
+          <div className="cardSlider" id="dryer">
+            <p>Tørretumbler</p>
+            <img src={tørretumbler} alt={"dryer"} />
           </div>
-          <div id="vaccuum">
+          <div className="cardSlider" id="vacuum">
+            <p>Støvsuger</p>
             <img src={støvsuger} alt={"vacuum"} />
+          </div>
+          <div className="cardSlider" id="entertainment">
+            <p>Underholdning</p>
+            <img src={underholdning} alt={"entertainment"} />
+          </div>
+          <div className="cardSlider" id="dishwasher">
+            <p>Opvasker</p>
+            <img src={opvasker} alt={"Dishwasher"} />
           </div>
         </Slider>
       </div>

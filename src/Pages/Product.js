@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import Carousel from "../Components/Carousel/Carousel";
-import { Container, Row, Col } from "react-grid-system";
+import { Container } from "react-grid-system";
 import { DatePicker, TimePicker } from "antd";
 import moment from "moment";
 import axios from "axios";
+import PopUp from "../Components/PopUp/PopUp";
 import "antd/dist/antd.css";
 import "./Products.css";
 
@@ -30,9 +31,30 @@ class Products extends Component {
       .roundNext5Min()
       .add(2, "hours")
       .format("HH:mm"),
-    product: "washer",
-    percentGreen: null
+    product: "washingMachine",
+    percentGreen: null,
+    productPercent: 0,
+    showPopUp: false,
+    popUpText: ""
   };
+
+  componentDidUpdate(oldProps) {
+    const newProps = this.props;
+    if (
+      oldProps !== newProps &&
+      newProps.user !== undefined &&
+      newProps.user.data !== undefined &&
+      newProps.user !== oldProps.user
+    ) {
+      this.handleSlide(0);
+    }
+  }
+
+  togglePopUp() {
+    this.setState({
+      showPopUp: !this.state.showPopUp
+    });
+  }
 
   handleDateChange = (date, dateString) => {
     this.setState(
@@ -75,11 +97,16 @@ class Products extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    this.togglePopUp();
+
     if (this.state.timeStart >= this.state.timeEnd) {
-      alert(
-        "Starttidspunktet du har valgt, er senere end sluttidspunktet.\nVenligst ændre det og prøv igen."
-      );
+      this.setState({
+        popUpText:
+          "Starttidspunktet du har valgt, er senere end sluttidspunktet. Venligst ændre det og prøv igen."
+      });
       return null;
+    } else {
+      this.setState({ popUpText: "Vent venligst..." });
     }
 
     const formattedTimeStart = this.state.date + " " + this.state.timeStart;
@@ -98,11 +125,16 @@ class Products extends Component {
           }
         }
       )
-      .then(function(res) {
-        console.log(res.data);
+      .then(res => {
+        this.setState({
+          popUpText: res.data.msg
+        });
       })
-      .catch(function(err) {
-        console.log("Something went wrong  " + err.message);
+      .catch(err => {
+        this.setState({
+          popUpText:
+            "Der var problemer med at oprette forbindelse til serveren... Prøv igen."
+        });
       });
   };
 
@@ -115,10 +147,30 @@ class Products extends Component {
       "dishwasher"
     ];
 
+    const greenEnergy = this.props.user.data.products[products[product]][
+      "greenEnergy"
+    ];
+    const totalEnergy = this.props.user.data.products[products[product]][
+      "totalEnergy"
+    ];
+
+    if (greenEnergy !== 0) {
+      this.setState({
+        product: products[product],
+        productPercent: ((greenEnergy / totalEnergy) * 100).toFixed(0)
+      });
+    } else {
+      this.setState({
+        product: products[product],
+        productPercent: 0
+      });
+    }
+
     this.setState({
       product: products[product]
     });
   };
+
   getDisabledEndHours = () => {
     let hours = [];
     for (let i = 0; i < moment(this.state.timeStart, "HH:mm").hour(); i++) {
@@ -126,6 +178,7 @@ class Products extends Component {
     }
     return hours;
   };
+
   getDisabledEndMinutes = selectedHour => {
     let minutes = [];
     if (selectedHour === moment(this.state.timeStart, "HH:mm").hour()) {
@@ -147,9 +200,9 @@ class Products extends Component {
     }
     return hours;
   };
+
   getDisabledStartMinutes = selectedHour => {
     let minutes = [];
-    console.log();
     if (selectedHour === moment(this.state.timeEnd, "HH:mm").hour()) {
       for (
         let i = 60;
@@ -164,6 +217,13 @@ class Products extends Component {
 
   componentDidMount() {
     this.axiosGetGreenEnergy();
+
+    if (this.state.timeStart >= moment().format("HH:mm")) {
+      this.setState({ timeEnd: moment("23:55", "HH:mm").format("HH:mm") });
+    }
+    if (this.props.user) {
+      this.handleSlide(0);
+    }
   }
 
   render() {
@@ -197,7 +257,7 @@ class Products extends Component {
                 <div className="timepicker-item">
                   <span className="formSpan">Fra:</span>
                   <TimePicker
-                    defaultValue={moment(this.state.timeStart, "HH:mm")}
+                    value={moment(this.state.timeStart, "HH:mm")}
                     format="HH:mm"
                     minuteStep={5}
                     disabledHours={() => this.getDisabledStartHours()}
@@ -213,7 +273,7 @@ class Products extends Component {
                 <div className="timepicker-item">
                   <span className="formSpan">Til:</span>
                   <TimePicker
-                    defaultValue={moment(this.state.timeEnd, "HH:mm")}
+                    value={moment(this.state.timeEnd, "HH:mm")}
                     format="HH:mm"
                     minuteStep={5}
                     disabledHours={() => this.getDisabledEndHours()}
@@ -240,16 +300,7 @@ class Products extends Component {
 
                 <div className="infoRow">
                   <div className="hexa">
-                    <p>
-                      {(
-                        (this.props.user.data.products[this.state.product]
-                          .greenEnergy /
-                          this.props.user.data.products[this.state.product]
-                            .totalEnergy) *
-                        100
-                      ).toFixed(0)}
-                      %
-                    </p>
+                    <p>{this.state.productPercent}%</p>
                   </div>
                   <div className="hexaText">
                     <p>Dit gennemsnitlige grønne el forbrug for støvsuger</p>
@@ -263,6 +314,12 @@ class Products extends Component {
                 </button>
               </div>
             </form>
+            {this.state.showPopUp ? (
+              <PopUp
+                text={this.state.popUpText}
+                closePopUp={this.togglePopUp.bind(this)}
+              />
+            ) : null}
           </div>
         </Container>
       );

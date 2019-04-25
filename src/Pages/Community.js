@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import { Container, Row, Col } from "react-grid-system";
+import { Container } from "react-grid-system";
 import userIcon from "../images/icons8_User_100px_1.png";
 import communityIcon from "../images/icons8_People_50px.png";
 import Icon from "../Components/Icon/Icon";

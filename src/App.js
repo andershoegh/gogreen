@@ -7,6 +7,7 @@ import MyUsage from "./Pages/myUsage";
 import RealTime from "./Pages/RealTime";
 import Products from "./Pages/Product";
 import SignIn from "./Pages/SignIn";
+import SignUp from "./Pages/SignUp";
 import Navbar from "./Components/NavBar/Navbar";
 import axios from "axios";
 
@@ -136,6 +137,16 @@ class App extends Component {
             path="/signin"
             render={() => (
               <SignIn
+                authUser={this.state.authUser}
+                isGreen={this.state.isGreen}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/signup"
+            render={() => (
+              <SignUp
                 authUser={this.state.authUser}
                 isGreen={this.state.isGreen}
               />

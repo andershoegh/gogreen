@@ -4,8 +4,6 @@ import { Container } from "react-grid-system";
 import ForecastChart from "../Components/forecastChart/forecastChart";
 import ForecastPolygon from "../Components/ForecastPolygon/ForecastPolygon";
 import "./RealTime.css";
-import Icon from "../Components/Icon/Icon";
-import hexagon from "../images/Polygon.svg";
 
 const RealTime = props => {
   const color = props.isGreen ? "circleGreen" : "circleRed";

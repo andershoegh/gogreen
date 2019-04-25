@@ -16,24 +16,10 @@ class MyUsage extends Component {
     this.state = {
       graphData: [],
       greenEnergy: "  ",
-      product: "",
+      product: "washingMachine",
       productPercent: 0
     };
   }
-
-  chooseProductFirst = product => {
-    const products = [
-      "washingMachine",
-      "dryer",
-      "vacuum",
-      "entertainment",
-      "dishwasher"
-    ];
-
-    this.setState({
-      product: products[product]
-    });
-  };
 
   componentDidUpdate(oldProps) {
     const newProps = this.props;
@@ -46,8 +32,6 @@ class MyUsage extends Component {
     }
   }
   componentDidMount() {
-    this.chooseProductFirst(0);
-
     if (this.props.user) {
       this.updateGraph();
     }
@@ -58,15 +42,18 @@ class MyUsage extends Component {
 
     const greenEnergy = (user.totalGreenEnergy / user.totalEnergy) * 100;
     const energy = 100 - greenEnergy;
-
-    this.setState(
-      {
-        graphData: [greenEnergy.toFixed(0), energy.toFixed(0)],
-        greenEnergy: greenEnergy.toFixed(0)
-      },
-      () => this.handleSlide(0)
-    );
+    console.log(greenEnergy);
+    if (greenEnergy !== 0) {
+      this.setState(
+        {
+          graphData: [greenEnergy.toFixed(0), energy.toFixed(0)],
+          greenEnergy: greenEnergy.toFixed(0)
+        },
+        () => this.handleSlide(0)
+      );
+    }
   };
+
   handleSlide = product => {
     const products = [
       "washingMachine",
@@ -81,10 +68,17 @@ class MyUsage extends Component {
     const totalEnergy = this.props.user.data.products[products[product]][
       "totalEnergy"
     ];
-    this.setState({
-      product: products[product],
-      productPercent: ((greenEnergy / totalEnergy) * 100).toFixed(0)
-    });
+    if (greenEnergy !== 0) {
+      this.setState({
+        product: products[product],
+        productPercent: ((greenEnergy / totalEnergy) * 100).toFixed(0)
+      });
+    } else {
+      this.setState({
+        product: products[product],
+        productPercent: 0
+      });
+    }
   };
 
   render() {

@@ -22,11 +22,14 @@ const Navbar = props => {
     case "/products":
       title = "Produkter";
       break;
-    default:
+    case "/":
       title = "";
+      break;
+    default:
+      title = "404";
   }
 
-  if (props.authUser) {
+  if (props.authUser && title !== "404") {
     return (
       <Container>
         <div className="navBar-wrapper">
@@ -49,15 +52,7 @@ const Navbar = props => {
       </Container>
     );
   } else {
-    return (
-      <Container>
-        <div className="navBar-wrapper">
-          <div className="logo-wrapper">
-            <Icon icon={dashIcon} />
-          </div>
-        </div>
-      </Container>
-    );
+    return null;
   }
 };
 

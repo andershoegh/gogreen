@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { firebase } from "../src/Utils/Firebase";
-import { Route, BrowserRouter } from "react-router-dom";
+import { Route, BrowserRouter, Redirect, Switch } from "react-router-dom";
 import Dashboard from "./Pages/Dashboard";
 import Community from "./Pages/Community";
 import MyUsage from "./Pages/myUsage";
@@ -8,6 +8,7 @@ import RealTime from "./Pages/RealTime";
 import Products from "./Pages/Product";
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
+import My404Page from "./Pages/My404Page";
 import Navbar from "./Components/NavBar/Navbar";
 import axios from "axios";
 
@@ -82,81 +83,84 @@ class App extends Component {
               <Navbar {...props} authUser={this.state.authUser} />
             )}
           />
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <Dashboard
-                user={this.state.user}
-                community={this.state.community}
-                isGreen={this.state.isGreen}
-                authUser={this.state.authUser}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/community"
-            render={() => (
-              <Community
-                community={this.state.community}
-                authUser={this.state.authUser}
-                isGreen={this.state.isGreen}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/myusage"
-            render={() => (
-              <MyUsage
-                user={this.state.user}
-                authUser={this.state.authUser}
-                isGreen={this.state.isGreen}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/realtime"
-            render={() => (
-              <RealTime
-                authUser={this.state.authUser}
-                isGreen={this.state.isGreen}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/products"
-            render={() => (
-              <Products
-                user={this.state.user}
-                authUser={this.state.authUser}
-                isGreen={this.state.isGreen}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/signin"
-            render={() => (
-              <SignIn
-                authUser={this.state.authUser}
-                isGreen={this.state.isGreen}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/signup"
-            render={() => (
-              <SignUp
-                authUser={this.state.authUser}
-                isGreen={this.state.isGreen}
-              />
-            )}
-          />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Dashboard
+                  user={this.state.user}
+                  community={this.state.community}
+                  isGreen={this.state.isGreen}
+                  authUser={this.state.authUser}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/community"
+              render={() => (
+                <Community
+                  community={this.state.community}
+                  authUser={this.state.authUser}
+                  isGreen={this.state.isGreen}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/myusage"
+              render={() => (
+                <MyUsage
+                  user={this.state.user}
+                  authUser={this.state.authUser}
+                  isGreen={this.state.isGreen}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/realtime"
+              render={() => (
+                <RealTime
+                  authUser={this.state.authUser}
+                  isGreen={this.state.isGreen}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/products"
+              render={() => (
+                <Products
+                  user={this.state.user}
+                  authUser={this.state.authUser}
+                  isGreen={this.state.isGreen}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/signin"
+              render={() => (
+                <SignIn
+                  authUser={this.state.authUser}
+                  isGreen={this.state.isGreen}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/signup"
+              render={() => (
+                <SignUp
+                  authUser={this.state.authUser}
+                  isGreen={this.state.isGreen}
+                />
+              )}
+            />
+            <Route render={() => <My404Page isGreen={this.state.isGreen} />} />
+          </Switch>
         </div>
       </BrowserRouter>
     );

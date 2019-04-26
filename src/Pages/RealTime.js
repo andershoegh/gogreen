@@ -4,7 +4,6 @@ import { Container } from "react-grid-system";
 import ForecastChart from "../Components/forecastChart/forecastChart";
 import ForecastPolygon from "../Components/ForecastPolygon/ForecastPolygon";
 import "./RealTime.css";
-import Icon from "../Components/Icon/Icon";
 
 class RealTime extends Component {
   state = {

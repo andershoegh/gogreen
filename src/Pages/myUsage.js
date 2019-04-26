@@ -14,21 +14,13 @@ class MyUsage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      greenEnergy: "  ",
-      product: "washer",
+      greenEnergy: "",
+      product: "washingMachine",
       productIndex: 0,
       productPercent: 0
     };
   }
 
-  chooseProductFirst = product => {
-    const products = ["washer", "oven", "vacuum"];
-
-    this.setState({
-      productIndex: product,
-      product: products[product]
-    });
-  };
 
   componentDidUpdate(oldProps) {
     const newProps = this.props;
@@ -37,45 +29,40 @@ class MyUsage extends Component {
       newProps.user.data &&
       newProps.user !== oldProps.user
     ) {
-      //this.updateGraph();
       this.handleSlide(this.state.productIndex);
     }
   }
   componentDidMount() {
-    this.chooseProductFirst(this.state.productIndex);
-
     if (this.props.user) {
-      // this.updateGraph();
       this.handleSlide(this.state.productIndex);
     }
   }
-
-  updateGraph = () => {
-    const user = this.props.user.data;
-
-    const greenEnergy = (user.totalGreenEnergy / user.totalEnergy) * 100;
-    const energy = 100 - greenEnergy;
-
-    this.setState(
-      {
-        graphData: [greenEnergy.toFixed(0), energy.toFixed(0)],
-        greenEnergy: greenEnergy.toFixed(0)
-      },
-      () => this.handleSlide(0)
-    );
-  };
+  
   handleSlide = product => {
-    const products = ["washer", "oven", "dryer"];
+    const products = [
+      "washingMachine",
+      "dryer",
+      "vacuum",
+      "entertainment",
+      "dishwasher"
+    ];
     const greenEnergy = this.props.user.data.products[products[product]][
       "greenEnergy"
     ];
     const totalEnergy = this.props.user.data.products[products[product]][
       "totalEnergy"
     ];
-    this.setState({
-      product: products[product],
-      productPercent: ((greenEnergy / totalEnergy) * 100).toFixed(0)
-    });
+    if (greenEnergy !== 0) {
+      this.setState({
+        product: products[product],
+        productPercent: ((greenEnergy / totalEnergy) * 100).toFixed(0)
+      });
+    } else {
+      this.setState({
+        product: products[product],
+        productPercent: 0
+      });
+    }
   };
 
   setPercentGreenEnergy = greenEnergy => {

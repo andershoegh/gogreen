@@ -1,29 +1,39 @@
-.slick-slider {
-  width: 250px;
-  justify-content: center;
+.test {
+    width: 100%;
+}
+
+.cardSlider {
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 3px 3px 15px -5px black;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.cardSlider>p {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 400;
 }
 
 .slick-slide {
-  -moz-transform: scale(0.5);
-  -ms-transform: scale(0.5);
-  -o-transform: scale(0.5);
-  -webkit-transform: scale(0.5);
-  transform: scale(0.5);
+    -moz-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    -o-transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
 }
 
 .slick-active {
-  -moz-transform: scale(0.9);
-  -ms-transform: scale(0.9);
-  -o-transform: scale(0.9);
-  -webkit-transform: scale(0.9);
-  transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -o-transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
 }
 
-p {
-  justify-content: center;
-  text-align: center;
-}
-
-.slick-track {
-  justify-items: center;
+.cardSlider>img {
+    width: 80%;
+    margin: auto;
 }

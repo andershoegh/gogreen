@@ -18,14 +18,17 @@ class App extends Component {
       authUser: JSON.parse(localStorage.getItem("authUser")),
       user: null,
       community: null,
-      isGreen: false
+      isGreen: JSON.parse(localStorage.getItem("isGreen"))
     };
   }
 
   componentDidMount() {
     firebase.auth.onAuthStateChanged(user => {
       axios.get("https://go-greener.herokuapp.com/isEnergyGreen").then(res => {
-        this.setState({ isGreen: res.data });
+        if (JSON.parse(localStorage.getItem("isGreen")) !== res.data) {
+          this.setState({ isGreen: res.data });
+          localStorage.setItem("isGreen", res.data);
+        }
       });
 
       this.setState({ authUser: user, user });

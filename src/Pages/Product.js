@@ -23,7 +23,6 @@ moment.fn.roundNext5Min = function() {
 
 class Products extends Component {
   state = {
-    date: moment().format("YYYY-MM-DD"),
     timeStart: moment()
       .roundNext5Min()
       .format("HH:mm"),
@@ -56,22 +55,14 @@ class Products extends Component {
     });
   }
 
-  handleDateChange = (date, dateString) => {
-    this.setState(
-      {
-        date: date.format("YYYY-MM-DD")
-      },
-      this.axiosGetGreenEnergy
-    );
-  };
-
   axiosGetGreenEnergy = () => {
+    const date = moment().format("YYYY-MM-DD");
     axios
       .get("https://go-greener.herokuapp.com/howGreenInTimePeriod", {
         params: {
           startTime: this.state.timeStart,
           endTime: this.state.timeEnd,
-          date: this.state.date
+          date: date
         }
       })
       .then(res => {
@@ -108,9 +99,9 @@ class Products extends Component {
     } else {
       this.setState({ popUpText: "Vent venligst..." });
     }
-
-    const formattedTimeStart = this.state.date + " " + this.state.timeStart;
-    const formattedTimeEnd = this.state.date + " " + this.state.timeEnd;
+    const date = moment().format("YYYY-MM-DD");
+    const formattedTimeStart = date + " " + this.state.timeStart;
+    const formattedTimeEnd = date + " " + this.state.timeEnd;
 
     axios
       .post(
@@ -246,19 +237,6 @@ class Products extends Component {
 
           <div className="formWrapper">
             <form onSubmit={this.handleSubmit}>
-              <div className="datepicker-wrapper">
-                <span className="formSpan">Dato:</span>
-                <DatePicker
-                  defaultValue={moment()}
-                  format="DD / MM - YYYY"
-                  disabledDate={current => {
-                    return current > moment();
-                  }}
-                  onChange={(date, dateString) =>
-                    this.handleDateChange(date, dateString)
-                  }
-                />
-              </div>
               <div className="timepicker-wrapper">
                 <div className="timepicker-item">
                   <span className="formSpan">Fra:</span>

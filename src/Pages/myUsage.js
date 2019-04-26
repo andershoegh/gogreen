@@ -21,12 +21,12 @@ class MyUsage extends Component {
     };
   }
 
-
   componentDidUpdate(oldProps) {
     const newProps = this.props;
     if (
       oldProps !== newProps &&
-      newProps.user.data &&
+      newProps.user !== undefined &&
+      newProps.user.data !== undefined &&
       newProps.user !== oldProps.user
     ) {
       this.handleSlide(this.state.productIndex);
@@ -37,7 +37,7 @@ class MyUsage extends Component {
       this.handleSlide(this.state.productIndex);
     }
   }
-  
+
   handleSlide = product => {
     const products = [
       "washingMachine",

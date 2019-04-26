@@ -28,7 +28,11 @@ class IndividualGraph extends Component {
   }
   componentDidMount() {
     this.setState({ small: this.props.small });
-    if (this.props.user !== undefined && this.props.user !== null) {
+    if (
+      this.props.user !== undefined &&
+      this.props.user !== null &&
+      this.props.user.data !== undefined
+    ) {
       this.updateGraph();
     }
   }

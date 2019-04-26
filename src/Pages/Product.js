@@ -223,7 +223,11 @@ class Products extends Component {
     } else {
       this.axiosGetGreenEnergy();
     }
-    if (this.props.user) {
+    if (
+      this.props.user !== undefined &&
+      this.props.user !== null &&
+      this.props.user.data !== undefined
+    ) {
       this.handleSlide(0);
     }
   }

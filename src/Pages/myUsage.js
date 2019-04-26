@@ -14,12 +14,13 @@ class MyUsage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      graphData: [],
-      greenEnergy: "  ",
+      greenEnergy: "",
       product: "washingMachine",
+      productIndex: 0,
       productPercent: 0
     };
   }
+
 
   componentDidUpdate(oldProps) {
     const newProps = this.props;
@@ -28,32 +29,15 @@ class MyUsage extends Component {
       newProps.user.data &&
       newProps.user !== oldProps.user
     ) {
-      this.updateGraph();
+      this.handleSlide(this.state.productIndex);
     }
   }
   componentDidMount() {
     if (this.props.user) {
-      this.updateGraph();
+      this.handleSlide(this.state.productIndex);
     }
   }
-
-  updateGraph = () => {
-    const user = this.props.user.data;
-
-    const greenEnergy = (user.totalGreenEnergy / user.totalEnergy) * 100;
-    const energy = 100 - greenEnergy;
-    console.log(greenEnergy);
-    if (greenEnergy !== 0) {
-      this.setState(
-        {
-          graphData: [greenEnergy.toFixed(0), energy.toFixed(0)],
-          greenEnergy: greenEnergy.toFixed(0)
-        },
-        () => this.handleSlide(0)
-      );
-    }
-  };
-
+  
   handleSlide = product => {
     const products = [
       "washingMachine",
@@ -81,6 +65,12 @@ class MyUsage extends Component {
     }
   };
 
+  setPercentGreenEnergy = greenEnergy => {
+    this.setState({
+      greenEnergy
+    });
+  };
+
   render() {
     const color = this.props.isGreen ? "circleGreen" : "circleRed";
     document.body.style.backgroundImage = ``;
@@ -98,7 +88,12 @@ class MyUsage extends Component {
           <div className="indi-graph">
             <WideCardSideText
               header="Green Electricity consumption"
-              graph={<IndividualGraph graphData={this.state.graphData} />}
+              graph={
+                <IndividualGraph
+                  user={this.props.user}
+                  setPercentGreenEnergy={this.setPercentGreenEnergy}
+                />
+              }
               sideText={
                 this.state.greenEnergy +
                 "% af alt strøm du bruger er grøn energi."

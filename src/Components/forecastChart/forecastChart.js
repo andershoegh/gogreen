@@ -8,27 +8,46 @@ import {
   Tooltip
 } from "recharts";
 import axios from "axios";
-
-const gradientOffset = () => {
-  const dataMax = 1000;
-  const dataMin = -1000;
-
-  if (dataMax <= 0) {
-    return 0;
-  }
-  if (dataMin >= 0) {
-    return 1;
-  }
-
-  return dataMax / (dataMax - dataMin);
-};
-
-const off = gradientOffset();
+import "./forecastChart.css";
 
 export default class ForecastChart extends PureComponent {
   static jsfiddleUrl = "https://jsfiddle.net/alidingling/64v6ocdx/";
-  state = {
-    data: []
+  constructor(props) {
+    super(props);
+    this.state = { width: 0, height: 0, data: [] };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener("resize", this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  }
+
+  handleClick = () => {
+    let CO2Emission = document.getElementsByClassName(
+      "recharts-tooltip-item-value"
+    )[0].textContent;
+    this.props.giveData(this.state.data, CO2Emission);
+  };
+
+  handleTouch = () => {
+    if (
+      document.getElementsByClassName("recharts-tooltip-item-value")[0] !==
+      undefined
+    ) {
+      let CO2Emission = document.getElementsByClassName(
+        "recharts-tooltip-item-value"
+      )[0].textContent;
+      this.props.giveData(this.state.data, CO2Emission);
+    }
   };
 
   render() {
@@ -37,40 +56,58 @@ export default class ForecastChart extends PureComponent {
         this.setState({
           data: res.data
         });
+        this.props.giveData(res.data, res.data[0].CO2Emission);
       });
     }
+    const gradientOffset = () => {
+      const dataMax = Math.max(...this.state.data.map(i => i.CO2Emission));
+      const dataMin = Math.min(...this.state.data.map(i => i.CO2Emission));
+
+      if (dataMax <= 0) {
+        return 0;
+      }
+      if (dataMin >= 0) {
+        return 1;
+      }
+
+      return dataMax / (dataMax - dataMin);
+    };
+
+    const off = gradientOffset();
 
     return (
-      <AreaChart
-        width={375}
-        height={256}
-        data={this.state.data}
-        margin={{
-          top: 10,
-          right: 30,
-          left: 0,
-          bottom: 0
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="Minutes5DK" hide={true} />
-        <YAxis dataKey="CO2Emission" hide={true} />
+      <div onTouchMove={this.handleTouch} onClick={this.handleClick}>
+        <AreaChart
+          width={this.state.width}
+          height={300}
+          data={this.state.data}
+          margin={{
+            top: 10,
+            right: 30,
+            left: 0,
+            bottom: 50
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="Minutes5DK" hide={true} />
+          <YAxis dataKey="CO2Emission" hide={true} />
 
-        <Tooltip />
+          <Tooltip />
 
-        <defs>
-          <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-            <stop offset={off} stopColor="red" stopOpacity={1} />
-            <stop offset={off} stopColor="green" stopOpacity={1} />
-          </linearGradient>
-        </defs>
-        <Area
-          type="monotone"
-          dataKey="CO2Emission"
-          stroke="#000"
-          fill="url(#splitColor)"
-        />
-      </AreaChart>
+          <defs>
+            <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
+              <stop offset={off} stopColor="green" stopOpacity={1} />
+              <stop offset={off} stopColor="red" stopOpacity={1} />
+            </linearGradient>
+          </defs>
+          <Area
+            type="monotone"
+            dataKey="CO2Emission"
+            stroke="#000"
+            fill="url(#splitColor)"
+          />
+        </AreaChart>
+      </div>
     );
   }
 }

@@ -216,7 +216,7 @@ class Products extends Component {
   };
 
   componentDidMount() {
-    if (this.state.timeStart >= moment().format("HH:mm")) {
+    if (this.state.timeStart >= moment("22:00", "HH:mm")) {
       this.setState({ timeEnd: moment("23:55", "HH:mm").format("HH:mm") }, () =>
         this.axiosGetGreenEnergy()
       );

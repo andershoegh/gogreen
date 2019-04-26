@@ -8,6 +8,7 @@ import {
   Tooltip
 } from "recharts";
 import axios from "axios";
+import "./forecastChart.css";
 
 export default class ForecastChart extends PureComponent {
   static jsfiddleUrl = "https://jsfiddle.net/alidingling/64v6ocdx/";
@@ -30,12 +31,32 @@ export default class ForecastChart extends PureComponent {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
+  handleClick = () => {
+    let CO2Emission = document.getElementsByClassName(
+      "recharts-tooltip-item-value"
+    )[0].textContent;
+    this.props.giveData(this.state.data, CO2Emission);
+  };
+
+  handleTouch = () => {
+    if (
+      document.getElementsByClassName("recharts-tooltip-item-value")[0] !==
+      undefined
+    ) {
+      let CO2Emission = document.getElementsByClassName(
+        "recharts-tooltip-item-value"
+      )[0].textContent;
+      this.props.giveData(this.state.data, CO2Emission);
+    }
+  };
+
   render() {
     if (this.state.data.length < 1) {
       axios.get("https://go-greener.herokuapp.com/forecast").then(res => {
         this.setState({
           data: res.data
         });
+        this.props.giveData(res.data, res.data[0].CO2Emission);
       });
     }
     const gradientOffset = () => {
@@ -55,36 +76,38 @@ export default class ForecastChart extends PureComponent {
     const off = gradientOffset();
 
     return (
-      <AreaChart
-        width={this.state.width}
-        height={256}
-        data={this.state.data}
-        margin={{
-          top: 10,
-          right: 30,
-          left: 0,
-          bottom: 50
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="Minutes5DK" hide={true} />
-        <YAxis dataKey="CO2Emission" hide={true} />
+      <div onTouchMove={this.handleTouch} onClick={this.handleClick}>
+        <AreaChart
+          width={this.state.width}
+          height={300}
+          data={this.state.data}
+          margin={{
+            top: 10,
+            right: 30,
+            left: 0,
+            bottom: 50
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="Minutes5DK" hide={true} />
+          <YAxis dataKey="CO2Emission" hide={true} />
 
-        <Tooltip />
+          <Tooltip />
 
-        <defs>
-          <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-            <stop offset={off} stopColor="green" stopOpacity={1} />
-            <stop offset={off} stopColor="red" stopOpacity={1} />
-          </linearGradient>
-        </defs>
-        <Area
-          type="monotone"
-          dataKey="CO2Emission"
-          stroke="#000"
-          fill="url(#splitColor)"
-        />
-      </AreaChart>
+          <defs>
+            <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
+              <stop offset={off} stopColor="green" stopOpacity={1} />
+              <stop offset={off} stopColor="red" stopOpacity={1} />
+            </linearGradient>
+          </defs>
+          <Area
+            type="monotone"
+            dataKey="CO2Emission"
+            stroke="#000"
+            fill="url(#splitColor)"
+          />
+        </AreaChart>
+      </div>
     );
   }
 }

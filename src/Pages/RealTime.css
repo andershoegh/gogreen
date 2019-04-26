@@ -21,17 +21,40 @@
   background-image: linear-gradient(169.77deg, #ff8383 -8.05%, #cf3939 106.47%);
 }
 
+.realtimeCircle {
+  height: 70vh !important;
+}
+
 .hexaWhite {
   background-image: url("../images/PolygonWhite.svg");
   background-repeat: no-repeat;
-  height: 58px;
-  width: 65px;
+  background-size: contain;
+  width: 49vw;
+  height: 42vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: auto;
+  margin-top: 3vh;
+}
+
+.hexaWhite p {
+  color: white;
+  font-size: 40px;
+  margin: 0px;
+}
+
+.forecastText {
+  padding-top: 4vh;
+}
+
+.forecastText p {
+  color: white;
+  font-size: 20px;
+  margin: 0px;
 }
 
 .forecastChart {
   position: absolute;
-  bottom: 30px;
+  bottom: 50px;
 }

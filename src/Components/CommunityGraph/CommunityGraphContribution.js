@@ -42,7 +42,10 @@ class CommunityGraphContribution extends Component {
         100
       ).toFixed(0);
       let tempData = [...graphDataRaw, energyPercent];
-      let tempNames = [...graphNames, user.data.firstName];
+      let tempNames = [
+        ...graphNames,
+        user.data.secondName + " & " + user.data.firstName
+      ];
 
       graphDataRaw = tempData;
       graphNames = tempNames;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { firebase } from "../src/Utils/Firebase";
-import { Route, BrowserRouter, Redirect, Switch } from "react-router-dom";
+import { Route, BrowserRouter, Switch } from "react-router-dom";
 import Dashboard from "./Pages/Dashboard";
 import Community from "./Pages/Community";
 import MyUsage from "./Pages/myUsage";
@@ -149,7 +149,7 @@ class App extends Component {
                 />
               )}
             />
-            <Route
+            {/* <Route
               exact
               path="/signup"
               render={() => (
@@ -158,7 +158,7 @@ class App extends Component {
                   isGreen={this.state.isGreen}
                 />
               )}
-            />
+            /> */}
             <Route render={() => <My404Page isGreen={this.state.isGreen} />} />
           </Switch>
         </div>

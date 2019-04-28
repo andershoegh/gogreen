@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { firebase } from "../Utils/Firebase";
+import "firebase/firestore";
 import "./SignUp.css";
 import { Container } from "react-grid-system";
 import H1 from "../Components/H1/H1";
 import GreenBgImg from "../images/backgroundGreen.png";
 import RedBgImg from "../images/backgroundRed.png";
 
-class SignIn extends Component {
+class SignUp extends Component {
   state = {
     firstName: "",
-    lastName: "",
+    secondName: "",
     email: "",
     password: "",
     authError: ""
@@ -23,33 +24,40 @@ class SignIn extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    // const timeStamp = new firebase.firestore.Timestamp.fromDate(
-    //   new Date(
-    //     moment("1970-01-01 00:00:00", "YYYY-MM-DD HH:mm:SS").format(
-    //       "YYYY-MM-DDTHH:mm:SS"
-    //     )
-    //   )
-    // );
-    const timeStamp = "";
+    const timeStamp = firebase.getTimeStamp();
     const productObj = {
-      greenEnergy: 0,
-      redEnergy: 0,
-      totalEnergy: 0,
+      greenEnergy: 1,
+      redEnergy: 1,
+      totalEnergy: 2,
       start: timeStamp,
       end: timeStamp
+    };
+    const activeObj = {
+      "0": false,
+      "1": false,
+      "2": false,
+      "3": false,
+      "4": false
+    };
+
+    const smartplugObj = {
+      greenEnergy: 1,
+      redEnergy: 1,
+      totalEnergy: 2,
+      active: activeObj
     };
 
     const docData = {
       firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      totalEnergy: 0,
-      totalGreenEnergy: 0,
+      secondName: this.state.secondName,
+      totalEnergy: 2,
+      totalGreenEnergy: 1,
       products: {
         washingMachine: productObj,
         dryer: productObj,
         vacuum: productObj,
-        entertainment: productObj,
-        dishwasher: productObj
+        dishwasher: productObj,
+        smartplug: smartplugObj
       }
     };
 
@@ -76,14 +84,14 @@ class SignIn extends Component {
     return (
       <Container className="formWrapper">
         <form className="transparent" onSubmit={this.handleSubmit}>
-          <H1>Sign Up for GoForGreen</H1>
+          <H1>Sign Up for Lumen</H1>
           <div className="input-field">
-            <label htmlFor="name">Firstname</label>
+            <label htmlFor="name">Male Name</label>
             <input type="text" id="firstName" onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <label htmlFor="name">Lastname</label>
-            <input type="text" id="lastName" onChange={this.handleChange} />
+            <label htmlFor="name">Female Name</label>
+            <input type="text" id="secondName" onChange={this.handleChange} />
           </div>
           <div className="input-field">
             <label htmlFor="email">Email</label>
@@ -107,4 +115,4 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default SignUp;

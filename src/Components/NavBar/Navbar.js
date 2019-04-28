@@ -17,10 +17,10 @@ const Navbar = props => {
       title = "Mit forbrug";
       break;
     case "/realtime":
-      title = "Real-tids data";
+      title = "Forecasting";
       break;
     case "/products":
-      title = "Produkter";
+      title = "Log produkter";
       break;
     case "/":
       title = "";

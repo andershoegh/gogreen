@@ -27,31 +27,6 @@
 
 .formWrapper {
     margin-top: 3vh;
-    /* height: 100vh; */
-}
-
-.datepicker-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.ant-calendar-picker {
-    width: 45vw;
-}
-
-.ant-calendar-picker>div {
-    display: flex;
-    align-items: center;
-}
-
-.ant-calendar-picker-icon {
-    color: white;
-    font-size: 20px;
-}
-
-.ant-calendar-picker-clear {
-    display: none;
 }
 
 .ant-input {
@@ -66,6 +41,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    margin-top: 5vh;
 }
 
 .ant-time-picker {
@@ -73,20 +49,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
+    border-radius: 10px;
 }
 
 .ant-time-picker-input {
-    color: white;
-    border-bottom: 1px solid #ffffff !important;
+    color: black;
+    border-bottom: 0px !important;
     font-size: 20px !important;
     font-weight: bold;
     display: flex;
     align-items: center;
-    padding: 0px 10px !important;
+    justify-content: center;
+    padding: 3px 10px !important;
+    text-align: center;
+    margin-bottom: 0px !important;
 }
 
 .ant-time-picker-clock-icon {
-    color: white !important;
+    display: none !important;
 }
 
 .formSpan {
@@ -103,7 +84,7 @@
 .bt-wrapper {
     display: flex;
     justify-content: center;
-    margin-top: 4vh;
+    margin-top: 3vh;
 }
 
 .btn-large {
@@ -111,24 +92,28 @@
 }
 
 .productInfo {
-    margin-top: 10vh;
+    margin-top: 14vh;
+    height: 100%;
 }
 
 .infoRow {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 3vh;
+    margin-top: 2vh;
+    height: 10vh;
 }
 
 .hexa {
     background-image: url("../images/Polygon.svg");
     background-repeat: no-repeat;
-    width: 66px;
+    width: 17vw;
+    height: 15vw;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: visible;
+    background-size: contain;
 }
 
 .hexaText {

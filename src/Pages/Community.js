@@ -52,7 +52,7 @@ class Community extends Component {
           </div>
           <div>
             <WideCardSideText
-              header="Grønt el-forbrug:"
+              header="Fællesskabets grønne elfordeling:"
               graph={
                 <CommunityGraph
                   community={this.props.community}
@@ -60,8 +60,10 @@ class Community extends Component {
                 />
               }
               sideText={
-                this.state.greenEnergy +
-                "% af alt strøm I bruger er grøn energi."
+                <p>
+                  {this.state.greenEnergy +
+                    "% af alt strøm I bruger i fællesskabet er grøn energi."}
+                </p>
               }
             />
           </div>
@@ -73,7 +75,7 @@ class Community extends Component {
                   setGraphDataAndNames={this.setGraphDataAndNames}
                 />
               }
-              header="Bidrag til fællesskabet"
+              header="Hver husstands grønne bidrag"
               sideText={
                 <ul>
                   <li style={{ color: "#283593" }}>
@@ -99,7 +101,10 @@ class Community extends Component {
             />
           </div>
           <div className="achieve-wrapper">
-            <p>Ugens fællesmål: {this.state.goal}% samlet grøn strøm</p>
+            <p className="goalText">
+              Fællesmål: {this.state.goal}% samlet grøn strøm
+            </p>
+            <p>Nuværende: {this.state.greenEnergy}%</p>
             <div className="progressRow">
               <div className="prizeIcon">
                 <img className="img-wrapper" src={prizeIcon} alt="" />

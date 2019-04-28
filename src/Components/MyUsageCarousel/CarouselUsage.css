@@ -1,21 +1,5 @@
-.caroWrap {
-    width: 100%;
-}
-
-.cardSlider {
-    background-color: white;
-    border-radius: 25px;
-    box-shadow: 3px 3px 15px -5px black;
-    padding: 20px 20px;
-    display: flex;
-    justify-content: center;
-}
-
-.cardSlider>p {
-    font-size: 20px;
-    margin-bottom: 10px;
-    font-weight: 400;
-    text-align: center;
+.uCaroWrap {
+    width: 87%;
 }
 
 .slick-slide {
@@ -34,7 +18,7 @@
     transform: scale(0.9);
 }
 
-.cardSlider>img {
-    width: 80%;
+.uCardSlider>img {
+    width: 75%;
     margin: auto;
 }

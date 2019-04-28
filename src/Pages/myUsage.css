@@ -3,10 +3,6 @@
   justify-content: space-evenly;
 }
 
-.carousel-wrapper {
-  justify-content: center;
-}
-
 .circle {
   position: absolute;
   top: -30vh;
@@ -18,8 +14,12 @@
   overflow: hidden;
 }
 
+.mCircle {
+  height: 75vh !important;
+}
+
 .cCircle {
-  height: 90vh !important;
+  height: 85vh !important;
 }
 
 .circleGreen {
@@ -32,9 +32,26 @@
 
 .productCircle {
   position: absolute;
-  top: 405px;
+  top: 60vh;
 }
 
 .upperContainer {
   height: 100vh;
+}
+
+.u-caro-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 6vh;
+}
+
+.product-info-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 18vh;
+}
+
+.product-info-wrapper p {
+  font-size: 18px;
+  font-weight: 450;
 }

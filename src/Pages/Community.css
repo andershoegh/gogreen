@@ -1,5 +1,15 @@
 .achieve-wrapper {
     width: 100%;
+    margin-top: 6vh;
+}
+
+.achieve-wrapper p {
+    text-align: center;
+    margin: 0px !important;
+}
+
+.goalText {
+    font-size: 20px;
 }
 
 .progressRow {
@@ -8,7 +18,7 @@
     align-items: center;
     width: 80%;
     margin: auto;
-    height: 50px;
+    height: 62px;
 }
 
 .ant-progress-text {
@@ -28,4 +38,5 @@ p {
     display: inline-block;
     flex: 2;
     height: 100%;
+    margin-right: 2vw;
 }

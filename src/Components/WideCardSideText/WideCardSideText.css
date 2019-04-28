@@ -1,5 +1,5 @@
 .wideCard {
-    margin: 5vh auto;
+    margin: 4vh auto;
     background-color: white;
     width: 90vw;
     border-radius: 10px;
@@ -9,6 +9,13 @@
 .wideCardHeader {
     text-align: center;
     padding: 10px 10px;
+}
+
+.wideCardHeader p {
+    font-size: 19px;
+    margin: 0px;
+    font-weight: 500;
+    color: black;
 }
 
 .cardCont {
@@ -23,4 +30,11 @@
     padding-right: 15px;
     padding-left: 15px;
     height: 16vh;
+    display: flex;
+}
+
+.content p {
+    font-size: 16px;
+    align-self: center;
+    margin: 0px;
 }

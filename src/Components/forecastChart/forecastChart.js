@@ -8,7 +8,6 @@ import {
   Tooltip
 } from "recharts";
 import axios from "axios";
-import "./forecastChart.css";
 
 export default class ForecastChart extends PureComponent {
   static jsfiddleUrl = "https://jsfiddle.net/alidingling/64v6ocdx/";
@@ -32,21 +31,37 @@ export default class ForecastChart extends PureComponent {
   }
 
   handleClick = () => {
-    let CO2Emission = document.getElementsByClassName(
-      "recharts-tooltip-item-value"
-    )[0].textContent;
-    this.props.giveData(this.state.data, CO2Emission);
+    if (
+      document.getElementsByClassName("recharts-tooltip-item-value")[0] !==
+        undefined &&
+      document.getElementsByClassName("recharts-tooltip-label")[0] !== undefined
+    ) {
+      let CO2Emission = document.getElementsByClassName(
+        "recharts-tooltip-item-value"
+      )[0].textContent;
+      let timePoint = document.getElementsByClassName(
+        "recharts-tooltip-label"
+      )[0].textContent;
+
+      this.props.giveData(this.state.data, CO2Emission, timePoint);
+    }
   };
 
   handleTouch = () => {
     if (
       document.getElementsByClassName("recharts-tooltip-item-value")[0] !==
-      undefined
+        undefined &&
+      document.getElementsByClassName("recharts-tooltip-label")[0] !== undefined
     ) {
       let CO2Emission = document.getElementsByClassName(
         "recharts-tooltip-item-value"
       )[0].textContent;
-      this.props.giveData(this.state.data, CO2Emission);
+
+      let timePoint = document.getElementsByClassName(
+        "recharts-tooltip-label"
+      )[0].textContent;
+
+      this.props.giveData(this.state.data, CO2Emission, timePoint);
     }
   };
 
@@ -56,7 +71,11 @@ export default class ForecastChart extends PureComponent {
         this.setState({
           data: res.data
         });
-        this.props.giveData(res.data, res.data[0].CO2Emission);
+        this.props.giveData(
+          res.data,
+          res.data[0].CO2Emission,
+          res.data[0].Minutes5DK
+        );
       });
     }
     const gradientOffset = () => {

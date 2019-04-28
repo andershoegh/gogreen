@@ -7,7 +7,7 @@ import MyUsage from "./Pages/myUsage";
 import RealTime from "./Pages/RealTime";
 import Products from "./Pages/Product";
 import SignIn from "./Pages/SignIn";
-import SignUp from "./Pages/SignUp";
+// import SignUp from "./Pages/SignUp";
 import My404Page from "./Pages/My404Page";
 import Navbar from "./Components/NavBar/Navbar";
 import axios from "axios";

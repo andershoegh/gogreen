@@ -9,18 +9,18 @@
   margin: auto;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 .popup_inner {
-  position: absolute;
-  left: 10%;
-  right: 10%;
-  top: 23%;
-  bottom: 52%;
+  margin: auto;
+  margin-top: 20vh;
+  width: 80%;
   text-align: center;
   padding: 20px;
   background: white;
   border-radius: 10px 10px 10px 10px;
   color: black;
 }
+
 .popup-btn {
   background-color: #ec407a;
   color: #fff;
@@ -29,6 +29,7 @@
   height: 54px;
   line-height: 54px;
   font-size: 15px;
-  padding: 0 28px;
+  padding: 0px 28px;
   border-radius: 5px 5px 5px 5px;
+  margin-top: 10px;
 }

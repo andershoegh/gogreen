@@ -9,9 +9,16 @@
     box-shadow: 3px 3px 15px -5px black;
     display: flex;
     flex-flow: column;
+    overflow: hidden;
 }
 
 .smGraph {
     padding-top: 10px;
-    flex-grow: 1;
+    display: inline-block;
+    overflow: hidden;
+    padding-bottom: 15px;
+}
+
+.smGraph img {
+    max-height: 100%;
 }

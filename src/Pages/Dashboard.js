@@ -5,7 +5,7 @@ import SmallCard from "../Components/SmallCard/SmallCard";
 import { Container } from "react-grid-system";
 import H1 from "../Components/H1/H1";
 import H2 from "../Components/H2/H2";
-import washMachine from "../images/washMachine.png";
+import washMachine from "../images/washing-machine.png";
 import Icon from "../Components/Icon/Icon";
 import forecastIcon from "../images/forecastIcon.png";
 import "./Dashboard.css";
@@ -14,8 +14,8 @@ import RedBgImg from "../images/backgroundRed.png";
 import CommunityGraphContribution from "../Components/CommunityGraph/CommunityGraphContribution";
 
 const Dashboard = props => {
-  const gSubHead = "Shift to green energy now";
-  const rSubHead = "Wait to use energy till it is green";
+  const gSubHead = "Energien er grøn nu";
+  const rSubHead = "Energien er lige nu rød";
 
   const bgImg = props.isGreen ? GreenBgImg : RedBgImg;
   const subheader = props.isGreen ? gSubHead : rSubHead;
@@ -25,7 +25,7 @@ const Dashboard = props => {
     return (
       <Container>
         <div>
-          <H1>GoForGreen</H1>
+          <H1>Lumen</H1>
         </div>
         <div className="subHeader">
           <H2>{subheader}</H2>
@@ -59,7 +59,7 @@ const Dashboard = props => {
           <NavLink to="/products">
             <SmallCard
               header="Produkter"
-              tileContent={<Icon icon={washMachine} />}
+              tileContent={<img src={washMachine} alt={""} />}
             />
           </NavLink>
         </div>

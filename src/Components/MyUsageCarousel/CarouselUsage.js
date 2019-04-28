@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import "./Carousel.css";
+import "./CarouselUsage.css";
 import "../../../node_modules/slick-carousel/slick/slick.css";
 import "../../../node_modules/slick-carousel/slick/slick-theme.css";
 import vaskemaskine from "../../images/washing-machine.svg";
@@ -9,7 +9,7 @@ import tørretumbler from "../../images/dryer.svg";
 import smartplug from "../../images/plug.svg";
 import opvasker from "../../images/dishwasher.svg";
 
-const Carousel = props => {
+const CarouselUsage = props => {
   const settings = {
     className: "center",
     centerMode: true,
@@ -27,27 +27,22 @@ const Carousel = props => {
   };
 
   return (
-    <div className="caroWrap">
+    <div className="uCaroWrap">
       <Slider {...settings}>
-        <div className="cardSlider" id="washingMachine">
-          <p>Vaskemaskine</p>
+        <div className="uCardSlider" id="washingMachine">
           <img src={vaskemaskine} alt={"washer"} />
         </div>
-        <div className="cardSlider" id="dryer">
-          <p>Tørretumbler</p>
+        <div className="uCardSlider" id="dryer">
           <img src={tørretumbler} alt={"dryer"} />
         </div>
-        <div className="cardSlider" id="vacuum">
-          <p>Støvsuger</p>
+        <div className="uCardSlider" id="vacuum">
           <img src={støvsuger} alt={"vacuum"} />
         </div>
-        <div className="cardSlider" id="dishwasher">
-          <p>Opvasker</p>
+        <div className="uCardSlider" id="dishwasher">
           <img src={opvasker} alt={"Dishwasher"} />
         </div>
         {props.smartplug !== undefined ? (
-          <div className="cardSlider" id="smartplug">
-            <p>Smartplugs</p>
+          <div className="uCardSlider" id="smartplug">
             <img src={smartplug} alt={"Smartplugs"} />
           </div>
         ) : null}
@@ -55,4 +50,4 @@ const Carousel = props => {
     </div>
   );
 };
-export default Carousel;
+export default CarouselUsage;

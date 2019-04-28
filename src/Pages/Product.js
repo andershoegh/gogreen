@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import Carousel from "../Components/Carousel/Carousel";
 import { Container } from "react-grid-system";
-import { DatePicker, TimePicker } from "antd";
+import { TimePicker } from "antd";
 import moment from "moment";
 import axios from "axios";
 import PopUp from "../Components/PopUp/PopUp";
@@ -31,6 +31,7 @@ class Products extends Component {
       .add(2, "hours")
       .format("HH:mm"),
     product: "washingMachine",
+    productDanish: "Vaskemaskine",
     percentGreen: null,
     productPercent: 0,
     showPopUp: false,
@@ -130,12 +131,12 @@ class Products extends Component {
   };
 
   handleSlide = product => {
-    const products = [
-      "washingMachine",
-      "dryer",
-      "vacuum",
-      "entertainment",
-      "dishwasher"
+    const products = ["washingMachine", "dryer", "vacuum", "dishwasher"];
+    const productsDanish = [
+      "Vaskemaskine",
+      "Tørretumbler",
+      "Støvsuger",
+      "Opvasker"
     ];
 
     const greenEnergy = this.props.user.data.products[products[product]][
@@ -148,11 +149,13 @@ class Products extends Component {
     if (greenEnergy !== 0) {
       this.setState({
         product: products[product],
+        productDanish: productsDanish[product],
         productPercent: ((greenEnergy / totalEnergy) * 100).toFixed(0)
       });
     } else {
       this.setState({
         product: products[product],
+        productDanish: productsDanish[product],
         productPercent: 0
       });
     }
@@ -230,7 +233,6 @@ class Products extends Component {
       return (
         <Container className="wrapper">
           <div className={`circle ${color}`} />
-
           <div className="caro-wrapper">
             <Carousel handleSlide={this.handleSlide} />
           </div>
@@ -287,7 +289,10 @@ class Products extends Component {
                     <p>{this.state.productPercent}%</p>
                   </div>
                   <div className="hexaText">
-                    <p>Dit gennemsnitlige grønne el forbrug for støvsuger</p>
+                    <p>
+                      Dit gennemsnitlige grønne el forbrug for{" "}
+                      {this.state.productDanish}
+                    </p>
                   </div>
                 </div>
               </div>

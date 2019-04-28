@@ -7,7 +7,7 @@ function WideCard(props) {
   return (
     <div className="wideCard">
       <div className="wideCardHeader">
-        <h5>{header}</h5>
+        <p>{header}</p>
       </div>
       <div className="cardCont">
         <div className="content">{graph}</div>

@@ -2,17 +2,17 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { Container } from "react-grid-system";
 import ForecastChart from "../Components/forecastChart/forecastChart";
-import ForecastPolygon from "../Components/ForecastPolygon/ForecastPolygon";
 import "./RealTime.css";
 
 class RealTime extends Component {
   state = {
     data: [],
-    hexagonInfo: 0
+    hexagonInfo: 0,
+    timePoint: ""
   };
 
-  getData = (data, hexagonInfo) => {
-    this.setState({ data, hexagonInfo });
+  getData = (data, hexagonInfo, timePoint) => {
+    this.setState({ data, hexagonInfo, timePoint });
   };
 
   render() {
@@ -26,7 +26,7 @@ class RealTime extends Component {
             <p>{this.state.hexagonInfo}</p>
           </div>
           <div className="forecastText">
-            <p>Grøn el på dette tidspunkt</p>
+            <p>Grøn el på tidspunktet {this.state.timePoint}</p>
           </div>
           <div className="forecastChart">
             <ForecastChart className="forecastChart" giveData={this.getData} />

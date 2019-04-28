@@ -13,7 +13,7 @@ export default class ForecastChart extends PureComponent {
   static jsfiddleUrl = "https://jsfiddle.net/alidingling/64v6ocdx/";
   constructor(props) {
     super(props);
-    this.state = { width: 0, height: 0, data: [] };
+    this.state = { width: 0, height: 0, data: [], greenLimitPercent: 0 };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
@@ -67,20 +67,28 @@ export default class ForecastChart extends PureComponent {
 
   render() {
     if (this.state.data.length < 1) {
-      axios.get("https://go-greener.herokuapp.com/forecast").then(res => {
-        this.setState({
-          data: res.data
+      axios
+        .get(
+          /*"https://go-greener.herokuapp.com/forecast"*/ "http://localhost:4000/forecast"
+        )
+        .then(res => {
+          this.setState({
+            data: res.data.emission,
+            greenLimitPercent: parseInt(res.data.greenLimitPercent)
+          });
+          this.props.giveData(
+            res.data.emission,
+            res.data.emission[0].CO2Emission,
+            res.data.emission[0].Minutes5DK
+          );
         });
-        this.props.giveData(
-          res.data,
-          res.data[0].CO2Emission,
-          res.data[0].Minutes5DK
-        );
-      });
     }
     const gradientOffset = () => {
-      const dataMax = Math.max(...this.state.data.map(i => i.CO2Emission));
-      const dataMin = Math.min(...this.state.data.map(i => i.CO2Emission));
+      // const dataMax = Math.max(...this.state.data.map(i => i.CO2Emission));
+      // const dataMin = Math.min(...this.state.data.map(i => i.CO2Emission));
+
+      const dataMax = 100;
+      const dataMin = -100;
 
       if (dataMax <= 0) {
         return 0;
@@ -89,7 +97,8 @@ export default class ForecastChart extends PureComponent {
         return 1;
       }
 
-      return dataMax / (dataMax - dataMin);
+      //return dataMax / (dataMax - dataMin);
+      return 1 - this.state.greenLimitPercent / 100;
     };
 
     const off = gradientOffset();

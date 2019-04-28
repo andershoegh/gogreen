@@ -37,7 +37,7 @@ class CommunityGraph extends Component {
       greenEnergy += user.data.totalGreenEnergy;
       totalEnergy += user.data.totalEnergy;
     });
-    const percentGreenEnergy = ((greenEnergy / totalEnergy) * 100).toFixed(0);
+    const percentGreenEnergy = Math.round((greenEnergy / totalEnergy) * 100);
     const percentTotalEnergy = 100 - percentGreenEnergy;
     this.setState({
       totalGraphData: [percentGreenEnergy, percentTotalEnergy]

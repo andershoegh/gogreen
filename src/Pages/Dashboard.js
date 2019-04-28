@@ -52,13 +52,13 @@ const Dashboard = props => {
         <div className="navCards">
           <NavLink to="/realtime">
             <SmallCard
-              header="Real-tids data"
+              header="Forecasting"
               tileContent={<Icon icon={forecastIcon} />}
             />
           </NavLink>
           <NavLink to="/products">
             <SmallCard
-              header="Produkter"
+              header="Log produkter"
               tileContent={<img src={washMachine} alt={""} />}
             />
           </NavLink>

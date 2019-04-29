@@ -31,6 +31,7 @@ class Products extends Component {
       .add(2, "hours")
       .format("HH:mm"),
     product: "washingMachine",
+    productIndex: 0,
     productDanish: "Vaskemaskine",
     percentGreen: null,
     productPercent: 0,
@@ -46,7 +47,7 @@ class Products extends Component {
       newProps.user.data !== undefined &&
       newProps.user !== oldProps.user
     ) {
-      this.handleSlide(0);
+      this.handleSlide(this.state.productIndex);
     }
   }
 
@@ -149,20 +150,18 @@ class Products extends Component {
     if (greenEnergy !== 0) {
       this.setState({
         product: products[product],
+        productIndex: product,
         productDanish: productsDanish[product],
         productPercent: ((greenEnergy / totalEnergy) * 100).toFixed(0)
       });
     } else {
       this.setState({
         product: products[product],
+        productIndex: product,
         productDanish: productsDanish[product],
         productPercent: 0
       });
     }
-
-    this.setState({
-      product: products[product]
-    });
   };
 
   getDisabledEndHours = () => {

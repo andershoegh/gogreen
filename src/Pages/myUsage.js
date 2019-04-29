@@ -67,12 +67,14 @@ class MyUsage extends Component {
     if (greenEnergy !== 0) {
       this.setState({
         product: products[product],
+        productIndex: product,
         productDanish: productsDanish[product],
         productPercent: ((greenEnergy / totalEnergy) * 100).toFixed(0)
       });
     } else {
       this.setState({
         product: products[product],
+        productIndex: product,
         productDanish: productsDanish[product],
         productPercent: 0
       });

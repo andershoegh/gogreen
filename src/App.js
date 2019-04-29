@@ -43,6 +43,34 @@ class App extends Component {
     });
     this.getUser();
     this.getCommunity();
+
+    firebase.getRealtime().onSnapshot(snapshot => {
+      let changes = snapshot.docChanges();
+
+      changes.forEach(change => {
+        if (this.state.authUser) {
+          if (this.state.authUser.uid === change.doc.id) {
+            this.setState({
+              user: { id: change.doc.id, data: change.doc.data() }
+            });
+          }
+
+          let newCommunity = [];
+
+          this.state.community.forEach(user => {
+            if (user.id === change.doc.id) {
+              newCommunity.push({
+                id: change.doc.id,
+                data: change.doc.data()
+              });
+            } else {
+              newCommunity.push(user);
+            }
+          });
+          this.setState({ community: newCommunity });
+        }
+      });
+    });
   }
 
   getUser = () => {

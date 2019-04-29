@@ -48,10 +48,10 @@
 .product-info-wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 18vh;
+  margin-top: 19vh;
 }
 
 .product-info-wrapper p {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 450;
 }

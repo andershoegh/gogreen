@@ -1,6 +1,6 @@
 .achieve-wrapper {
     width: 100%;
-    margin-top: 6vh;
+    margin-top: 8vh;
 }
 
 .achieve-wrapper p {
@@ -9,7 +9,7 @@
 }
 
 .goalText {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .progressRow {

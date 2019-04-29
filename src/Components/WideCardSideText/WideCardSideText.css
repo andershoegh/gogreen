@@ -12,7 +12,7 @@
 }
 
 .wideCardHeader p {
-    font-size: 19px;
+    font-size: 17px;
     margin: 0px;
     font-weight: 500;
     color: black;
@@ -31,6 +31,7 @@
     padding-left: 12px;
     height: 16vh;
     display: flex;
+    align-items: center;
 }
 
 .content p {

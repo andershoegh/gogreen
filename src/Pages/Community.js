@@ -78,19 +78,19 @@ class Community extends Component {
               header="Hver husstands grønne bidrag"
               sideText={
                 <ul>
-                  <li style={{ color: "#283593" }}>
+                  <li style={{ color: "#283593", fontSize: "14px" }}>
                     {this.state.graphNames[0] +
                       " " +
                       this.state.whoIsBestGraphData[0] +
                       "%"}
                   </li>
-                  <li style={{ color: "#FF8A65" }}>
+                  <li style={{ color: "#FF8A65", fontSize: "14px" }}>
                     {this.state.graphNames[1] +
                       " " +
                       this.state.whoIsBestGraphData[1] +
                       "%"}
                   </li>
-                  <li style={{ color: "#263238" }}>
+                  <li style={{ color: "#263238", fontSize: "14px" }}>
                     {this.state.graphNames[2] +
                       " " +
                       this.state.whoIsBestGraphData[2] +

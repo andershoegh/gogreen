@@ -80,7 +80,12 @@ export default class ForecastChart extends PureComponent {
       });
     }
     const gradientOffset = () => {
-      return 1 - this.state.greenLimitPercent / 100;
+      const dataMax = Math.max(...this.state.data.map(i => i.CO2Emission));
+      if (dataMax >= 0) {
+        return 1 - this.state.greenLimitPercent / (dataMax / 100) / 100;
+      }
+
+      return 0;
     };
 
     const off = gradientOffset();

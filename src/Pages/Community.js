@@ -19,7 +19,7 @@ class Community extends Component {
     this.state = {
       whoIsBestGraphData: [],
       graphNames: [],
-      goal: 80 //sets the goal for the achievement bar
+      goal: 70 //sets the goal for the achievement bar
     };
   }
 

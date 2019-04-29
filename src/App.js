@@ -72,7 +72,9 @@ class App extends Component {
       });
     });
   }
-
+  componentWillUpdate() {
+    console.log("GAAY");
+  }
   getUser = () => {
     let user;
     if (this.state.authUser) {

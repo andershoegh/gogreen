@@ -25,12 +25,7 @@ class App extends Component {
 
   componentDidMount() {
     firebase.auth.onAuthStateChanged(user => {
-      axios.get("https://go-greener.herokuapp.com/isEnergyGreen").then(res => {
-        if (JSON.parse(localStorage.getItem("isGreen")) !== res.data) {
-          this.setState({ isGreen: res.data });
-          localStorage.setItem("isGreen", res.data);
-        }
-      });
+      this.getIsEnergyGreen();
 
       this.setState({ authUser: user, user });
       localStorage.setItem("authUser", JSON.stringify(user));
@@ -72,9 +67,16 @@ class App extends Component {
       });
     });
   }
-  componentWillUpdate() {
-    console.log("GAAY");
-  }
+
+  getIsEnergyGreen = () => {
+    axios.get("https://go-greener.herokuapp.com/isEnergyGreen").then(res => {
+      if (JSON.parse(localStorage.getItem("isGreen")) !== res.data) {
+        this.setState({ isGreen: res.data });
+        localStorage.setItem("isGreen", res.data);
+      }
+    });
+  };
+
   getUser = () => {
     let user;
     if (this.state.authUser) {
@@ -110,7 +112,11 @@ class App extends Component {
           <Route
             path="/"
             render={props => (
-              <Navbar {...props} authUser={this.state.authUser} />
+              <Navbar
+                {...props}
+                authUser={this.state.authUser}
+                getIsEnergyGreen={this.getIsEnergyGreen}
+              />
             )}
           />
           <Switch>

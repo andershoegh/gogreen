@@ -33,7 +33,7 @@ const Navbar = props => {
     return (
       <Container>
         <div className="navBar-wrapper">
-          <div className="logo-wrapper">
+          <div className="logo-wrapper" onClick={props.getIsEnergyGreen}>
             <Link className="logo-link" to="/">
               <Icon icon={dashIcon} />
             </Link>

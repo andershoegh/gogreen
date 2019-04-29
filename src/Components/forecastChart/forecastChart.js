@@ -74,7 +74,7 @@ export default class ForecastChart extends PureComponent {
         });
         this.props.giveData(
           res.data.emission,
-          res.data.emission[0].CO2Emission,
+          res.data.emission[0].CO2Emission + "%",
           res.data.emission[0].Minutes5DK
         );
       });
@@ -102,7 +102,13 @@ export default class ForecastChart extends PureComponent {
           <XAxis dataKey="Minutes5DK" hide={true} />
           <YAxis dataKey="CO2Emission" hide={true} />
 
-          <Tooltip />
+          <Tooltip
+            formatter={(value, name, props) => {
+              const formattedName = "Grøn energi";
+              const formattedValue = value + "%";
+              return [formattedValue, formattedName];
+            }}
+          />
 
           <defs>
             <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">

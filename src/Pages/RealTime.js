@@ -23,7 +23,7 @@ class RealTime extends Component {
         <Container className="containerClass">
           <div className={`circle ${color} realtimeCircle`} />
           <div className="hexaWhite">
-            <p>{this.state.hexagonInfo}%</p>
+            <p>{this.state.hexagonInfo}</p>
           </div>
           <div className="forecastText">
             <p>Grøn el på tidspunktet {this.state.timePoint}</p>

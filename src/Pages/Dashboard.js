@@ -5,7 +5,7 @@ import SmallCard from "../Components/SmallCard/SmallCard";
 import { Container } from "react-grid-system";
 import H1 from "../Components/H1/H1";
 import H2 from "../Components/H2/H2";
-import washMachine from "../images/washing-machine.png";
+import washMachine from "../images/washing-machine2.png";
 import Icon from "../Components/Icon/Icon";
 import forecastIcon from "../images/forecastIcon.png";
 import "./Dashboard.css";

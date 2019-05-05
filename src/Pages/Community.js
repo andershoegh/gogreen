@@ -12,12 +12,13 @@ import CommunityGraphContribution from "../Components/CommunityGraph/CommunityGr
 import { Progress } from "antd";
 import "./Community.css";
 import prizeIcon from "../images/prize.svg";
+import CommunityList from "../Components/CommunityList/CommunityList";
 
 class Community extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      whoIsBestGraphData: [],
+      graphData: [],
       graphNames: [],
       goal: 70 //sets the goal for the achievement bar
     };
@@ -25,7 +26,7 @@ class Community extends Component {
 
   setGraphDataAndNames = (graphData, graphNames) => {
     this.setState({
-      whoIsBestGraphData: graphData,
+      graphData,
       graphNames
     });
   };
@@ -77,26 +78,10 @@ class Community extends Component {
               }
               header="Hver husstands grønne bidrag"
               sideText={
-                <ul>
-                  <li style={{ color: "#283593", fontSize: "14px" }}>
-                    {this.state.graphNames[0] +
-                      " " +
-                      this.state.whoIsBestGraphData[0] +
-                      "%"}
-                  </li>
-                  <li style={{ color: "#FF8A65", fontSize: "14px" }}>
-                    {this.state.graphNames[1] +
-                      " " +
-                      this.state.whoIsBestGraphData[1] +
-                      "%"}
-                  </li>
-                  <li style={{ color: "#263238", fontSize: "14px" }}>
-                    {this.state.graphNames[2] +
-                      " " +
-                      this.state.whoIsBestGraphData[2] +
-                      "%"}
-                  </li>
-                </ul>
+                <CommunityList
+                  communityNames={this.state.graphNames}
+                  communityPercent={this.state.graphData}
+                />
               }
             />
           </div>

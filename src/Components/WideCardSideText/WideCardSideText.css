@@ -1,41 +1,41 @@
 .wideCard {
-    margin: 4vh auto;
-    background-color: white;
-    width: 90vw;
-    border-radius: 10px;
-    box-shadow: 3px 3px 15px -5px black;
+  margin: 4vh auto;
+  background-color: white;
+  width: 90vw;
+  border-radius: 10px;
+  box-shadow: 3px 3px 15px -5px black;
 }
 
 .wideCardHeader {
-    text-align: center;
-    padding: 10px 10px;
+  text-align: center;
+  padding: 10px 10px;
 }
 
 .wideCardHeader p {
-    font-size: 17px;
-    margin: 0px;
-    font-weight: 500;
-    color: black;
+  font-size: 17px;
+  margin: 0px;
+  font-weight: 500;
+  color: black;
 }
 
 .cardCont {
-    display: flex;
-    justify-content: space-evenly;
-    padding-bottom: 15px;
-    padding-right: 15px;
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 15px;
+  padding-right: 15px;
 }
 
 .content {
-    width: 50%;
-    padding-right: 6px;
-    padding-left: 6px;
-    height: 16vh;
-    display: flex;
-    align-items: center;
+  width: 50%;
+  padding-right: 4px;
+  padding-left: 4px;
+  height: 16vh;
+  display: flex;
+  align-items: center;
 }
 
 .content p {
-    font-size: 16px;
-    align-self: center;
-    margin: 0px;
+  font-size: 16px;
+  align-self: center;
+  margin: 0px;
 }
